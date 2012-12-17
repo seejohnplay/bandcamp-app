@@ -1,8 +1,10 @@
 <h2>All Posts</h2>
 
+<%= paginate @posts %>
+
 <ul>
 <% @posts.each do |post| %>
-		<li><%= link_to post.url, post_path(post) %> - Album ID: <%= post.embed_code %></li>
+		<li><%= link_to post.title, post_path(post) %> by <%= post.artist %></li>
 <% end %>
 </ul>
 
