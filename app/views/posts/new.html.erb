@@ -1,0 +1,17 @@
+<h2>Submit a new link</h2>
+
+<%= form_for(@post) do |f| %>
+	<% if @post.errors.any? %>
+		<div class='alert alert-error'>
+			<%= @post.errors.full_messages.join("<br>").html_safe %>		
+		</div>
+	<% end %>
+	<div class="field">
+		<%= f.label :url, "URL:" %>
+		<%= f.text_field :url, :placeholder => "URL" %>
+	</div>
+	<br>
+	<div class="actions">
+		<%= f.submit "Submit URL!" %>
+	</div>
+<% end %>

@@ -1,0 +1,9 @@
+<h2>All Posts</h2>
+
+<ul>
+<% @posts.each do |post| %>
+		<li><%= link_to post.url, post_path(post) %> - Album ID: <%= post.embed_code %></li>
+<% end %>
+</ul>
+
+<%= link_to 'Submit new post', new_post_path %>
