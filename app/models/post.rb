@@ -4,6 +4,10 @@ require 'nokogiri'
 class Post < ActiveRecord::Base
   attr_accessible :embed_code, :url, :link_type, :title, :artist
 
+  def to_param
+  	"#{id}-#{title.parameterize}-#{artist.parameterize}"
+  end
+
   def set_link_type(post_url)
   	if post_url.include? '/album/'
   		return 'album'
