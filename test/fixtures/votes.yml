@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  direction: MyString
+  post_id: 1
+
+two:
+  direction: MyString
+  post_id: 1

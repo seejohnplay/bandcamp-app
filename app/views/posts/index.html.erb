@@ -2,12 +2,29 @@
 
 <%= paginate @posts %>
 
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover table-condensed table-nonfluid">
 	<tbody>
 		<% @posts.each do |post| %>
 		<tr>
-			<td><%= link_to post.title, post_path(post) %> by <%= post.artist %></td>
-		</tr<
+			<td>
+				<%= link_to post.title, post_path(post) %> by <%= post.artist %>
+			</td>
+			<td class="column2">			
+				<div class="vote_number"><%= post.vote_number %></div>
+			</td>
+			<td class="column1">
+				<%= form_for [post, post.votes.build] do |f| %>
+					<%= f.hidden_field :direction, value: "up" %>
+					<%= f.submit "Vote Up", :type => :image, :src => "/assets/up-arrow-small.gif" %>
+				<% end %>
+			</td>
+			<td class="column3">
+				<%= form_for [post, post.votes.build] do |f| %>
+					<%= f.hidden_field :direction, value: "down" %>
+					<%= f.submit "Vote Up", :type => :image, :src => "/assets/down-arrow-small.gif" %>
+				<% end %>
+			</td>
+		</tr>
 	</tbody>
 <% end %>
 </table>

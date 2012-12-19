@@ -4,6 +4,12 @@ require 'nokogiri'
 class Post < ActiveRecord::Base
   attr_accessible :embed_code, :url, :link_type, :title, :artist
 
+  has_many :votes
+
+  def vote_number
+    votes.where(direction: "up").count - votes.where(direction: "down").count
+  end
+
   def to_param
   	"#{id}-#{title.parameterize}-#{artist.parameterize}"
   end
