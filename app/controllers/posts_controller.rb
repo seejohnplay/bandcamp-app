@@ -15,9 +15,8 @@ end
 
 def create
 	@post = Post.new(params[:post])
-	@post.embed_code = @post.get_album_id(@post.url) if @post.url.include? '/album/'
-	@post.embed_code = @post.get_track_id(@post.url) if @post.url.include? '/track/'
-	@post.link_type = @post.set_link_type(@post.url)
+  @post.link_type = @post.set_link_type(@post.url)
+	@post.set_embed_code
 	@post.artist = @post.extract_album_artist(@post.url)
 	if @post.link_type == 'album'
 		@post.title = @post.extract_album_title(@post.url) 
