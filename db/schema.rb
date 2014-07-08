@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121219172332) do
+ActiveRecord::Schema.define(:version => 20121219192310) do
 
   create_table "posts", :force => true do |t|
     t.string   "url"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20121219172332) do
     t.string   "link_type"
     t.string   "title"
     t.string   "artist"
+    t.string   "permalink"
   end
 
   create_table "votes", :force => true do |t|

@@ -82,8 +82,8 @@ class Post < ActiveRecord::Base
 		album_id = ""
 
 		raw_url.read.split.each do |line|
-			if line.include? 'album='
-				album_id = line.match(/\d+/).to_s.to_i
+      if line.include? 'album='
+				album_id = line.match(/album=(\d+)/)[1].to_i
 				break
 			end
 		end
@@ -103,7 +103,7 @@ end
 
 		raw_url.read.split.each do |line|
 			if line.include? 'track='
-				track_id = line.match(/\d+/).to_s.to_i
+				track_id = line.match(/track=(\d+)/)[1].to_i
 				break
 			end
 		end
