@@ -22,32 +22,17 @@ class Post < ActiveRecord::Base
     %-<iframe width="400" height="100" style="position: relative; display: block; width: 400px; height: 100px;" src="http://bandcamp.com/EmbeddedPlayer/v=2/#{self.link_type}=#{self.embed_code}/size=venti/bgcol=FFFFFF/linkcol=4285BB/" allowtransparency="true" frameborder="0"></iframe>-
   end
 
-  def extract_album_title(post_url)
-    raw_url = open(post_url)
-    album_title = ""
+  def set_title
+    raw_url = open(self.url)
 
     raw_url.each_line do |line|
-      if line.include? 'album_title :'
-        album_title = line[line.index(':')+3..line.index(',')-2]
+      if line.include? '<title>'
+        self.title = line[line.index('<title>')+7..line.index('|')-2]
         break
       end
     end
 
-    album_title
-  end
-
-  def extract_track_title(post_url)
-    raw_url = open(post_url)
-    album_title = ""
-
-    raw_url.each_line do |line|
-      if line.include? 'title :'
-        album_title = line[line.index(':')+3..line.index(',')-2]
-        break
-      end
-    end
-
-    album_title
+    self.title
   end
 
   def set_artist
@@ -60,7 +45,7 @@ class Post < ActiveRecord::Base
       end
     end
 
-    self.album_artist
+    self.artist
   end
 
   def set_embed_code
@@ -68,7 +53,7 @@ class Post < ActiveRecord::Base
     raw_url = open(self.url)
 
     raw_url.read.split.each do |line|
-      if line.include? 'album='
+      if line.include? "#{self.link_type}="
         self.embed_code =  line.match(/#{self.link_type}=(\d+)/)[1].to_i
         break
       end

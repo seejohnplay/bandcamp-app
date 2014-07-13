@@ -6,7 +6,7 @@ end
 
 def show
 	@post = Post.find(params[:id])
-	@player_code = @post.get_player_code(@post)
+	@player_code = @post.get_player_code
 end
 
 def new
@@ -18,11 +18,7 @@ def create
   @post.set_link_type
 	@post.set_embed_code
 	@post.set_artist
-	if @post.link_type == 'album'
-		@post.title = @post.extract_album_title(@post.url) 
-	else
-		@post.title = @post.extract_track_title(@post.url)
-	end
+  @post.set_title
 	if @post.save
 	  redirect_to(posts_path, :notice => 'Post was successfully created.')
 	else
