@@ -17,7 +17,7 @@ def create
 	@post = Post.new(params[:post])
   @post.set_link_type
 	@post.set_embed_code
-	@post.set_album_artist
+	@post.set_artist
 	if @post.link_type == 'album'
 		@post.title = @post.extract_album_title(@post.url) 
 	else

@@ -50,12 +50,12 @@ class Post < ActiveRecord::Base
     album_title
   end
 
-  def set_album_artist
+  def set_artist
     raw_url = open(self.url)
 
     raw_url.each_line do |line|
       if line.include? 'artist :'
-        self.album_artist = line[line.index(':')+3..line.index(',')-2]
+        self.artist = line[line.index(':')+3..line.index(',')-2]
         break
       end
     end
