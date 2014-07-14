@@ -1,31 +1,31 @@
 <% content_for :title do %>
-	<%= @post.title %> by <%= @post.artist %>
+    <%= @post.title %> by <%= @post.artist %>
 <% end %>
 <h2><%= @post.title %> by <%= @post.artist %></h2>
 
 <%= raw @player_code %>
 <br>
 <table class="table table-striped table-hover table-condensed table-nonfluid">
-	<tr>
-		<td class="column2">
-			<div class="vote_number">Popularity:</div>
-		</td>
-		<td class="column2">
-			<div class="vote_number" id="vote_number-<%=@post.id%>"><%= @post.vote_number %></div>
-		</td>
-		<td class="column1">
-			<%= form_for [@post, @post.votes.build], remote: true do |f| %>
-				<%= f.hidden_field :direction, value: "up" %>
-				<%= f.submit "Vote Up", :type => :image, :src => "/assets/up-arrow-small.gif" %>
-			<% end %>
-		</td>
-		<td>
-			<%= form_for [@post, @post.votes.build], remote: true do |f| %>
-				<%= f.hidden_field :direction, value: "down" %>
-				<%= f.submit "Vote Up", :type => :image, :src => "/assets/down-arrow-small.gif" %>
-			<% end %>
-		</td>
-	</tr>
+  <tr>
+    <td class="column2">
+      <div class="vote_number">Popularity:</div>
+    </td>
+    <td class="column2">
+      <div class="vote_number" id="vote_number-<%= @post.id %>"><%= @post.vote_number %></div>
+    </td>
+    <td class="column1">
+      <%= form_for [@post, @post.votes.build], remote: true do |f| %>
+          <%= f.hidden_field :direction, value: "up" %>
+          <%= f.submit "Vote Up", :type => :image, :src => "/assets/up-arrow-small.gif" %>
+      <% end %>
+    </td>
+    <td>
+      <%= form_for [@post, @post.votes.build], remote: true do |f| %>
+          <%= f.hidden_field :direction, value: "down" %>
+          <%= f.submit "Vote Up", :type => :image, :src => "/assets/down-arrow-small.gif" %>
+      <% end %>
+    </td>
+  </tr>
 </table>
 <br>
 <%= link_to 'Back to all posts', posts_path, :class => 'btn' %>
