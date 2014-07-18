@@ -3,6 +3,8 @@ require 'nokogiri'
 
 class Post < ActiveRecord::Base
   attr_accessible :embed_code, :url, :link_type, :title, :artist
+  validates :embed_code, :url, :link_type, :title, :artist, presence: true
+  validates_uniqueness_of :url, :message => 'has already been imported.'
 
   has_many :votes
 
@@ -20,6 +22,19 @@ class Post < ActiveRecord::Base
 
   def get_player_code
     %-<iframe width="400" height="100" style="position: relative; display: block; width: 400px; height: 100px;" src="http://bandcamp.com/EmbeddedPlayer/v=2/#{self.link_type}=#{self.embed_code}/size=venti/bgcol=FFFFFF/linkcol=4285BB/" allowtransparency="true" frameborder="0"></iframe>-
+  end
+
+  def playable?
+    raw_url = open(self.url)
+
+    raw_url.each_line do |line|
+      if line.include? 'inline_player'
+        return true
+        break
+      end
+    end
+
+    false
   end
 
   def set_title
@@ -49,7 +64,6 @@ class Post < ActiveRecord::Base
   end
 
   def set_embed_code
-    #begin
     raw_url = open(self.url)
 
     raw_url.read.split.each do |line|
@@ -60,11 +74,6 @@ class Post < ActiveRecord::Base
     end
 
     self.embed_code
-
-    #	rescue OpenURI::HTTPError
-    #		puts "bad url"
-    #	end
-
   end
 
 end

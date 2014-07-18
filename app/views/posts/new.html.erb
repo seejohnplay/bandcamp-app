@@ -7,14 +7,14 @@
 		<% end %>
 		<legend>Submit a new link</legend>
 		<div class="control-group">
-			<%= f.label :url, "URL:", :class => 'control-label' %>
+			<%= f.label :url, 'Bandcamp URL:', :class => 'control-label' %>
 			<div class="controls">
-				<%= f.text_field :url, :placeholder => "URL", :class => 'text_field' %>
+				<%= f.text_field :url, :placeholder => 'URL', :class => 'text_field' %>
 			</div>
 		</div>
 		<br>
 		<div class="form-actions">
-			<%= f.submit "Submit URL!", :class => 'btn btn-primary' %>
+			<%= f.submit 'Submit URL!', :class => 'btn btn-primary' %>
 			<%= link_to 'Cancel', posts_path, :class => 'btn' %>
 		</div>
 	</fieldset>
