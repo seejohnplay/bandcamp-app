@@ -27,10 +27,7 @@
     </td>
     <% if @post.tag_list.size > 0 %>
         <td>
-          Tags:
-          <% @post.tag_list.each do |tag| %>
-              <%= link_to tag, posts_path(:tag => tag) %>
-          <% end %>
+          Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
         </td>
     <% end %>
   </tr>
