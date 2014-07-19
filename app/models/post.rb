@@ -86,6 +86,7 @@ class Post < ActiveRecord::Base
         self.tag_list.add(tag)
       end
     end
+    self.tag_list.add(self.artist.downcase)
 
     self.tag_list
   end

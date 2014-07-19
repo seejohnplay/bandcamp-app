@@ -6,6 +6,8 @@ class PostsController < ApplicationController
     else
       @posts = Post.order("created_at DESC").page(params[:page]).per(5)
     end
+
+    @tags = Post.tag_counts_on(:tags)
   end
 
   def show

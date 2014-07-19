@@ -1,32 +1,41 @@
-<h2>All Posts <%= "with tag '#{@tag}'" if @tag %><div style='float:right'><%= link_to 'Show all posts', posts_path if @tag %></div></h2>
+<h2>All Posts <%= "with tag '#{@tag}'" if @tag %>
+  <div style='float:right'><%= link_to 'Show all posts', posts_path if @tag %></div>
+</h2>
 
 <%= paginate @posts %>
 
 <table class="table table-striped table-hover table-condensed table-nonfluid">
-	<tbody>
-		<% @posts.each do |post| %>
-		<tr>
-			<td>
-				<%= link_to post.title, post_path(post) %> by <%= post.artist %>
-			</td>
-			<td class="column2">
-				<div class="vote_number" id="vote_number-<%=post.id%>"><%= post.vote_number %></div>
-			</td>
-			<td class="column1">
-				<%= form_for [post, post.votes.build], remote: true do |f| %>
-					<%= f.hidden_field :direction, value: "up" %>
-					<%= f.submit "Vote Up", :type => :image, :src => "/assets/up-arrow-small.gif" %>
-				<% end %>
-			</td>
-			<td class="column3">
-				<%= form_for [post, post.votes.build], remote: true do |f| %>
-					<%= f.hidden_field :direction, value: "down" %>
-					<%= f.submit "Vote Up", :type => :image, :src => "/assets/down-arrow-small.gif" %>
-				<% end %>
-			</td>
-		</tr>
-	</tbody>
-<% end %>
-</table>
+  <tbody>
+  <% @posts.each do |post| %>
+      <tr>
+        <td>
+          <%= link_to post.title, post_path(post) %> by <%= post.artist %>
+        </td>
+        <td class="column2">
+          <div class="vote_number" id="vote_number-<%= post.id %>"><%= post.vote_number %></div>
+        </td>
+        <td class="column1">
+          <%= form_for [post, post.votes.build], remote: true do |f| %>
+              <%= f.hidden_field :direction, value: "up" %>
+              <%= f.submit "Vote Up", :type => :image, :src => "/assets/up-arrow-small.gif" %>
+          <% end %>
+        </td>
+        <td class="column3">
+          <%= form_for [post, post.votes.build], remote: true do |f| %>
+              <%= f.hidden_field :direction, value: "down" %>
+              <%= f.submit "Vote Up", :type => :image, :src => "/assets/down-arrow-small.gif" %>
+          <% end %>
+        </td>
+      </tr>
+      </tbody>
+  <% end %>
+  </table>
 
 <%= link_to 'Submit new post', new_post_path, :class => 'btn btn-primary' %>
+<br/><br/>
+<fieldset>
+  <legend>Tags</legend>
+  <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+      <%= link_to tag.name, posts_path(:tag => tag.name), :class => css_class %>
+  <% end %>
+</fieldset>
