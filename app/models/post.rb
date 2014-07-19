@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
   validates_uniqueness_of :url, :message => 'has already been imported.'
 
   has_many :votes
+  acts_as_taggable
 
   def vote_number
     votes.where(direction: "up").count - votes.where(direction: "down").count
@@ -68,12 +69,25 @@ class Post < ActiveRecord::Base
 
     raw_url.read.split.each do |line|
       if line.include? "#{self.link_type}="
-        self.embed_code =  line.match(/#{self.link_type}=(\d+)/)[1].to_i
+        self.embed_code = line.match(/#{self.link_type}=(\d+)/)[1].to_i
         break
       end
     end
 
     self.embed_code
+  end
+
+  def set_tags
+    raw_url = open(self.url)
+
+    raw_url.read.split.each do |line|
+      if line.include? '/tag/'
+        tag = line.match(/\/tag\/(\w+)/)[1]
+        self.tag_list.add(tag)
+      end
+    end
+
+    self.tag_list
   end
 
 end

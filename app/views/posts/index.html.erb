@@ -1,4 +1,4 @@
-<h2>All Posts</h2>
+<h2>All Posts <%= "with tag '#{@tag}'" if @tag %><div style='float:right'><%= link_to 'Show all posts', posts_path if @tag %></div></h2>
 
 <%= paginate @posts %>
 
@@ -9,7 +9,7 @@
 			<td>
 				<%= link_to post.title, post_path(post) %> by <%= post.artist %>
 			</td>
-			<td class="column2">			
+			<td class="column2">
 				<div class="vote_number" id="vote_number-<%=post.id%>"><%= post.vote_number %></div>
 			</td>
 			<td class="column1">

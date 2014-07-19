@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.order("created_at DESC").page(params[:page]).per(5)
+    if @tag = params[:tag]
+      @posts = Post.tagged_with(@tag).order("created_at DESC").page(params[:page]).per(5)
+    else
+      @posts = Post.order("created_at DESC").page(params[:page]).per(5)
+    end
   end
 
   def show
@@ -21,6 +25,8 @@ class PostsController < ApplicationController
       @post.set_embed_code
       @post.set_artist
       @post.set_title
+      logger.debug 'now setting TAGSS ....................'
+      @post.set_tags
       if @post.save
         redirect_to(posts_path, :notice => 'Post was successfully created.')
       else

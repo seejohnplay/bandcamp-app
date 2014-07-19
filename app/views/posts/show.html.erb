@@ -25,6 +25,14 @@
           <%= f.submit "Vote Up", :type => :image, :src => "/assets/down-arrow-small.gif" %>
       <% end %>
     </td>
+    <% if @post.tag_list.size > 0 %>
+        <td>
+          Tags:
+          <% @post.tag_list.each do |tag| %>
+              <%= link_to tag, posts_path(:tag => tag) %>
+          <% end %>
+        </td>
+    <% end %>
   </tr>
 </table>
 <br>
