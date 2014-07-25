@@ -23,12 +23,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     begin
       raise unless @post.playable?
-      @post.set_link_type
-      @post.set_embed_code
-      @post.set_artist
-      @post.set_title
-      logger.debug 'now setting TAGSS ....................'
-      @post.set_tags
+      @post.setup
       if @post.save
         redirect_to(posts_path, :notice => 'Post was successfully created.')
       else

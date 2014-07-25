@@ -38,57 +38,28 @@ class Post < ActiveRecord::Base
     false
   end
 
-  def set_title
-    raw_url = open(self.url)
+  def setup
+    post_url = open(self.url)
 
-    raw_url.each_line do |line|
-      if line.include? '<title>'
-        self.title = line[line.index('<title>')+7..line.index('|')-2]
-        break
+    self.set_link_type
+
+    post_url.each_line do |line|
+      case line
+        when /<title>/
+          self.title = line[line.index('<title>')+7..line.index('|')-2]
+        when /artist :/
+          self.artist = line[line.index(':')+3..line.index(',')-2]
+        when /#{self.link_type}=/
+          self.embed_code = line.match(/#{self.link_type}=(\d+)/)[1].to_i
+        when /\/tag\//
+          tag = line.match(/\/tag\/(\w+)/)[1]
+          self.tag_list.add(tag)
       end
     end
 
-    self.title
-  end
-
-  def set_artist
-    raw_url = open(self.url)
-
-    raw_url.each_line do |line|
-      if line.include? 'artist :'
-        self.artist = line[line.index(':')+3..line.index(',')-2]
-        break
-      end
-    end
-
-    self.artist
-  end
-
-  def set_embed_code
-    raw_url = open(self.url)
-
-    raw_url.read.split.each do |line|
-      if line.include? "#{self.link_type}="
-        self.embed_code = line.match(/#{self.link_type}=(\d+)/)[1].to_i
-        break
-      end
-    end
-
-    self.embed_code
-  end
-
-  def set_tags
-    raw_url = open(self.url)
-
-    raw_url.read.split.each do |line|
-      if line.include? '/tag/'
-        tag = line.match(/\/tag\/(\w+)/)[1]
-        self.tag_list.add(tag)
-      end
-    end
     self.tag_list.add(self.artist.downcase)
 
-    self.tag_list
+    [self.title, self.artist, self.embed_code, self.tag_list]
   end
 
 end

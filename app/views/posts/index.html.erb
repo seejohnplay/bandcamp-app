@@ -9,7 +9,7 @@
   <% @posts.each do |post| %>
       <tr>
         <td>
-          <%= link_to post.title, post_path(post) %> by <%= post.artist %>
+          <%= link_to post.title.html_safe, post_path(post) %> by <%= post.artist.html_safe %>
         </td>
         <td class="column2">
           <div class="vote_number" id="vote_number-<%= post.id %>"><%= post.vote_number %></div>

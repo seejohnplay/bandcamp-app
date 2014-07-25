@@ -1,7 +1,7 @@
 <% content_for :title do %>
-    <%= @post.title %> by <%= @post.artist %>
+    <%= @post.title.html_safe %> by <%= @post.artist.html_safe %>
 <% end %>
-<h2><%= @post.title %> by <%= @post.artist %></h2>
+<h2><%= @post.title.html_safe %> by <%= @post.artist.html_safe %></h2>
 
 <%= raw @player_code %>
 <br>
