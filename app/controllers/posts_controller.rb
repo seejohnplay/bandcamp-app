@@ -30,7 +30,7 @@ class PostsController < ApplicationController
         render 'new'
       end
     rescue
-      redirect_to new_post_path, :flash => { :error => 'Something went wrong. Please make sure your URL is a valid Bandcamp URL containing playable audio.' }
+      redirect_to new_post_path, :flash => {:error => 'Something went wrong. Please make sure your URL is a valid Bandcamp URL containing playable audio.'}
     end
   end
 end
