@@ -5,16 +5,16 @@
 				<%= @post.errors.full_messages.join("<br>").html_safe %>		
 			</div>
 		<% end %>
-		<legend>Submit a new link</legend>
+		<legend>Submit a new post</legend>
 		<div class="control-group">
 			<%= f.label :url, 'Bandcamp URL:', :class => 'control-label' %>
 			<div class="controls">
-				<%= f.text_field :url, :placeholder => 'URL', :class => 'text_field' %>
+				<%= f.text_field :url, :placeholder => 'ex. http://shakeygraves.bandcamp.com/album/roll-the-bones', :class => 'text_field input-xlarge' %>
 			</div>
 		</div>
 		<br>
 		<div class="form-actions">
-			<%= f.submit 'Submit URL!', :class => 'btn btn-primary' %>
+			<%= f.submit 'Submit the URL!', :class => 'btn btn-primary' %>
 			<%= link_to 'Cancel', posts_path, :class => 'btn' %>
 		</div>
 	</fieldset>
