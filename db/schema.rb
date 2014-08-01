@@ -11,17 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140813174644) do
+ActiveRecord::Schema.define(:version => 20140814155044) do
 
   create_table "posts", :force => true do |t|
     t.string   "url"
     t.string   "embed_code"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "link_type"
     t.string   "title"
     t.string   "artist"
     t.string   "permalink"
+    t.text     "description"
+    t.string   "artist_url"
   end
 
   create_table "taggings", :force => true do |t|

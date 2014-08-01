@@ -2,7 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 
 class Post < ActiveRecord::Base
-  attr_accessible :embed_code, :url, :link_type, :title, :artist
+  attr_accessible :embed_code, :url, :link_type, :title, :artist, :description, :artist_url
   validates :embed_code, :url, :link_type, :title, :artist, presence: true
   validates_uniqueness_of :url, :message => 'has already been imported.'
 
@@ -58,8 +58,15 @@ class Post < ActiveRecord::Base
     end
 
     self.tag_list.add(self.artist.downcase)
+    self.set_description_and_artist_url
 
     [self.title, self.artist, self.embed_code, self.tag_list]
+  end
+
+  def set_description_and_artist_url
+    doc = Nokogiri::HTML(open(self.url<<'/'), nil, 'utf-8')
+    self.description = doc.xpath("//meta[@name='Description']/@content").first.content
+    self.artist_url = doc.css("span[@itemprop='byArtist'] a").first['href']
   end
 
 end

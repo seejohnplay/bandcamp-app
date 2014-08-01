@@ -30,11 +30,22 @@
           <%= yield %>
         </div>
         <div class="span3">
-          <h2>About The App</h2>
+          <% if @post && @post.description %>
+              <h2>About The Artist</h2>
 
-          <p>
-            Music Discovery App is a web scraping tool for Bandcamp music release pages.  Since they stopped handing out developer keys over a year ago, I had to come up with another way to construct embedded music players automatically with only a Bandcamp URL. After completing the original task, I decided to keep going and grab additional page data like tags and incorporate it into a music discovery app. Happy music hunting!! ♫♫
-          </p>
+              <p><%= @post.description %></p>
+              <p><%= link_to @post.artist_url, @post.artist_url, :target => '_blank' if @post.artist_url %></p>
+          <% else %>
+              <h2>About The App</h2>
+
+              <p>
+                Music Discovery App is a web scraping tool for Bandcamp music release pages. Since they stopped handing
+                out developer keys over a year ago, I had to come up with another way to construct embedded music
+                players automatically with only a Bandcamp URL. After completing the original task, I decided to keep
+                going and grab additional page data like tags and incorporate it into a music discovery app. Happy music
+                hunting!! ♫♫
+              </p>
+          <% end %>
         </div>
       </div>
       <footer>
