@@ -3,7 +3,7 @@ CourseProject::Application.routes.draw do
 
   get 'tags/:tag', to: 'posts#index', as: :tag
 
-  resources :posts, :only => [:index, :new, :create, :show] do
+  resources :posts, :only => [:index, :new, :create, :show, :destroy] do
   	resources :votes, only: [:create]
   end
 end

@@ -33,4 +33,10 @@ class PostsController < ApplicationController
       redirect_to new_post_path, :flash => {:error => 'Something went wrong. Please make sure you\'re submitting a valid Bandcamp URL containing playable audio.'}
     end
   end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to(posts_path, :notice => 'Post was destroyed.')
+  end
 end

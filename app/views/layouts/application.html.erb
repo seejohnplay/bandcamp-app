@@ -31,9 +31,9 @@
         </div>
         <div class="span3">
           <% if @post && @post.description %>
-              <h2>About The Artist</h2>
+              <h2>About The <%= @post.link_type.capitalize %></h2>
 
-              <p><%= @post.description %></p>
+              <p><%= @post.description.html_safe %></p>
               <p><%= link_to @post.artist_url, @post.artist_url, :target => '_blank' if @post.artist_url %></p>
           <% else %>
               <h2>About The App</h2>
