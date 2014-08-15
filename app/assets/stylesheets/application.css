@@ -31,3 +31,7 @@ div.vote_number { font-size:20px; font-weight:bold; margin-top:-5px;}
 .css2 { font-size: 1.2em; }
 .css3 { font-size: 1.4em; }
 .css4 { font-size: 1.6em; }
+
+/* Bootstrap overrides */
+
+form.navbar-form.navbar-left { padding-right: 0px; }
