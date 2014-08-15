@@ -2,7 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 
 class Post < ActiveRecord::Base
-  attr_accessible :embed_code, :url, :link_type, :title, :artist, :description, :artist_url
+  #attr_accessible :embed_code, :url, :link_type, :title, :artist, :description, :artist_url
   validates :embed_code, :url, :link_type, :title, :artist, presence: true
   validates_uniqueness_of :url, :message => 'has already been imported.'
 

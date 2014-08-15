@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new(post_params)
     begin
       raise unless @post.playable?
       @post.setup
@@ -39,4 +39,11 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to(posts_path, :notice => 'Post was destroyed.')
   end
+
+  private
+
+  def post_params
+    params.required(:post).permit(:embed_code, :url, :link_type, :title, :artist, :description, :artist_url)
+  end
+
 end

@@ -1,11 +1,28 @@
-== Getting Started
+== README
 
-1. Download/unzip or git clone this project into your local directory
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-2. Make sure you have bundler gem installed, and within this project's directory, run:
-       <tt>bundle install</tt>
+Things you may want to cover:
 
-3. Then run:       
-       <tt>rails server</tt>
+* Ruby version
 
-3. Go to http://localhost:3000 with a browser.
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
