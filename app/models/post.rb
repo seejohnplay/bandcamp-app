@@ -68,9 +68,8 @@ class Post < ActiveRecord::Base
 
   def set_description_and_artist_url
     doc = Nokogiri::HTML(open(self.url<<'/'), nil, 'utf-8')
-    self.description = doc.xpath("//meta[@name='Description']/@content").first.content.gsub("\n", '<br />')
-    #self.description = doc.css("div .bd").first.content
-    self.artist_url = doc.css("span[@itemprop='byArtist'] a").first['href'] if doc.css("span[@itemprop='byArtist'] a").first
+    self.description = doc.at_xpath("//meta[@name='Description']/@content").to_s.gsub("\n", '<br />')
+    self.artist_url = doc.at_css("span[@itemprop='byArtist'] a @href").to_s
   end
 
 end
