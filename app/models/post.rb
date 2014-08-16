@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
   has_many :votes
   acts_as_taggable
 
-  def vote_number
+  def calculate_popularity
     votes.where(direction: "up").count - votes.where(direction: "down").count
   end
 

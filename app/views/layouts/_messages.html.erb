@@ -1,5 +1,4 @@
 <% flash.each do |name, msg| %>
-    <% logger.debug '!!!!! flash name: ' + name.inspect + ' flash message: ' + msg.inspect %>
     <div class="alert alert-<%= (name == 'notice' || name == 'success') ? "success" : "danger" %>" role="alert">
       <a class="close" data-dismiss="alert">&#215;</a>
       <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>

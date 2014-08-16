@@ -11,7 +11,7 @@
       <div>Popularity:</div>
     </td>
     <td class="column2">
-      <div class="vote_number" id="vote_number-<%= @post.id %>"><%= @post.vote_number %></div>
+      <div class="vote_number" id="vote_number-<%= @post.id %>"><%= @post.popularity %></div>
     </td>
     <td class="column1">
       <%= form_for [@post, @post.votes.build], remote: true do |f| %>
@@ -33,4 +33,4 @@
   </tr>
 </table>
 <br>
-<%= link_to 'Back to all posts', posts_path, :class => 'btn' %>
+<%= link_to 'Back to all posts', posts_path, :class => 'btn btn-default' %>

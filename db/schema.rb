@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814155044) do
+ActiveRecord::Schema.define(version: 20140816133517) do
 
   create_table "posts", force: true do |t|
     t.string   "url"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140814155044) do
     t.string   "artist"
     t.text     "description"
     t.string   "artist_url"
+    t.integer  "popularity",  default: 0, null: false
   end
 
   create_table "taggings", force: true do |t|
