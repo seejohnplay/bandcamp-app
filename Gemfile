@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'devise'
 gem 'acts-as-taggable-on' # for post tags
 gem 'nokogiri'
 gem 'kaminari'

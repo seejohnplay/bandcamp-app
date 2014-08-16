@@ -18,24 +18,32 @@
         <li><a href="http://github.com/crestcode">Github</a></li>
       </ul>
       <!--<form class="navbar-form navbar-left" role="search">-->
-        <!--<div class="form-group">-->
-          <!--<input type="text" class="form-control" placeholder="Search">-->
-        <!--</div>-->
-        <!--<button type="submit" class="btn btn-navbar">Submit</button>-->
+      <!--<div class="form-group">-->
+      <!--<input type="text" class="form-control" placeholder="Search">-->
+      <!--</div>-->
+      <!--<button type="submit" class="btn btn-navbar">Submit</button>-->
       <!--</form>-->
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/">Login</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Edit Account</a></li>
-            <li><a href="#">Cancel Account</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Logout</a></li>
-          </ul>
-        </li>
+
+        <% if user_signed_in? %>
+            <li><%= link_to current_user.email, '#' %></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Profile</a></li>
+                <li><%= link_to 'Edit Account', edit_user_registration_path, :class => 'navbar-link' %></li>
+                <li class="divider"></li>
+                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+              </ul>
+            </li>
+        <% else %>
+            <li><%= link_to 'Sign in', new_user_session_path %></li>
+            <li><%= link_to 'Sign up', new_user_registration_path %></li>
+        <% end %>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
 </nav>
