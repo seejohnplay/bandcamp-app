@@ -9,6 +9,9 @@ class Post < ActiveRecord::Base
   has_many :votes
   acts_as_taggable
 
+  scope :by_created_at, ->(page) { order(created_at: :desc).page(page).per(5) }
+  scope :by_tag, ->(tag, page) { tagged_with(tag).by_created_at(page) }
+
   def calculate_popularity
     votes.where(direction: "up").count - votes.where(direction: "down").count
   end

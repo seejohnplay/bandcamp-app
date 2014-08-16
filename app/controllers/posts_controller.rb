@@ -2,9 +2,9 @@ class PostsController < ApplicationController
 
   def index
     if @tag = params[:tag]
-      @posts = Post.tagged_with(@tag).order(created_at: :desc).page(params[:page]).per(5)
+      @posts = Post.by_tag(@tag, params[:page])
     else
-      @posts = Post.order(created_at: :desc).page(params[:page]).per(5)
+      @posts = Post.by_created_at(params[:page])
     end
 
     @tags = Post.tag_counts_on(:tags)
