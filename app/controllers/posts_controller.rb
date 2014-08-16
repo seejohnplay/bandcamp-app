@@ -2,9 +2,9 @@ class PostsController < ApplicationController
 
   def index
     if @tag = params[:tag]
-      @posts = Post.tagged_with(@tag).order("created_at DESC").page(params[:page]).per(5)
+      @posts = Post.tagged_with(@tag).order(created_at: :desc).page(params[:page]).per(5)
     else
-      @posts = Post.order("created_at DESC").page(params[:page]).per(5)
+      @posts = Post.order(created_at: :desc).page(params[:page]).per(5)
     end
 
     @tags = Post.tag_counts_on(:tags)
@@ -20,11 +20,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    post = Post.new(post_params)
     begin
-      raise unless @post.playable?
-      @post.setup
-      if @post.save
+      raise unless post.playable?
+      post.setup
+      if post.save
         redirect_to(posts_path, :notice => 'Post was successfully created.')
       else
         render 'new'
@@ -35,8 +35,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
+    post = Post.find(params[:id])
+    post.destroy
     redirect_to(posts_path, :notice => 'Post was destroyed.')
   end
 
