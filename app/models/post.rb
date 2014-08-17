@@ -20,10 +20,6 @@ class Post < ActiveRecord::Base
     "#{id}-#{title.parameterize}-#{artist.parameterize}"
   end
 
-  def set_link_type
-    self.link_type = (self.url.include? '/album/') ? 'album' : 'track'
-  end
-
   def get_player_code
     %-<iframe width="400" height="100" style="position: relative; display: block; width: 400px; height: 100px;" src="http://bandcamp.com/EmbeddedPlayer/v=2/#{self.link_type}=#{self.embed_code}/size=venti/bgcol=FFFFFF/linkcol=4285BB/" allowtransparency="true" frameborder="0"></iframe>-
   end
@@ -42,10 +38,19 @@ class Post < ActiveRecord::Base
   end
 
   def setup
-    post_url = open(self.url)
 
     self.set_link_type
+    self.set_artist_title_embed_code_and_tags
+    self.set_description_and_artist_url
 
+  end
+
+  def set_link_type
+    self.link_type = (self.url.include? '/album/') ? 'album' : 'track'
+  end
+
+  def set_artist_title_embed_code_and_tags
+    post_url = open(self.url)
     post_url.each_line do |line|
       case line
         when /<title>/
@@ -59,11 +64,7 @@ class Post < ActiveRecord::Base
           self.tag_list.add(tag)
       end
     end
-
     self.tag_list.add(self.artist.downcase)
-    self.set_description_and_artist_url
-
-    [self.title, self.artist, self.embed_code, self.tag_list]
   end
 
   def set_description_and_artist_url
