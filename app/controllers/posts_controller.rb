@@ -20,11 +20,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
+    @post = Post.new(url: params[:post][:url]+'/')
     begin
-      raise unless post.playable?
-      post.setup
-      if post.save
+      raise unless @post.playable?
+      @post.setup
+      if @post.save
         redirect_to(posts_path, :notice => 'Post was successfully created.')
       else
         render 'new'

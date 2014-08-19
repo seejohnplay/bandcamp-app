@@ -4,7 +4,7 @@ require 'nokogiri'
 class Post < ActiveRecord::Base
   #attr_accessible :embed_code, :url, :link_type, :title, :artist, :description, :artist_url
   validates :embed_code, :url, :link_type, :title, :artist, presence: true
-  validates_uniqueness_of :url, :message => 'has already been imported.'
+  validates_uniqueness_of :embed_code, :message => 'has already been imported.'
 
   has_many :votes
   acts_as_taggable
@@ -46,7 +46,7 @@ class Post < ActiveRecord::Base
   end
 
   def set_link_type
-    self.link_type = (self.url.include? '/album/') ? 'album' : 'track'
+    self.link_type = (self.url.include? '/track/') ? 'track' : 'album'
   end
 
   def set_artist_title_embed_code_and_tags
@@ -68,7 +68,7 @@ class Post < ActiveRecord::Base
   end
 
   def set_description_and_artist_url
-    doc = Nokogiri::HTML(open(self.url<<'/'), nil, 'utf-8')
+    doc = Nokogiri::HTML(open(self.url), nil, 'utf-8')
     self.description = doc.at_xpath("//meta[@name='Description']/@content").to_s.gsub("\n", '<br />')
     self.artist_url = doc.at_css("span[@itemprop='byArtist'] a @href").to_s
   end
