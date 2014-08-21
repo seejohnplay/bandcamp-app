@@ -1,10 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'devise'
+gem 'devise' # for authentication
 gem 'acts-as-taggable-on' # for post tags
-gem 'nokogiri'
-gem 'kaminari'
+gem 'nokogiri' # for HTML parsing and scraping
+gem 'kaminari' # for pagination
 gem 'closure_tree' # for nested comments
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
