@@ -32,5 +32,10 @@
     <% end %>
   </tr>
 </table>
+
+<div class="post_comments">
+  <%= render 'comments/comments_index', locals: { post: @post, comments: @comments } %>
+</div>
+
 <br>
 <%= link_to 'Back to all posts', posts_path, :class => 'btn btn-default' %>

@@ -4,6 +4,7 @@ gem 'devise'
 gem 'acts-as-taggable-on' # for post tags
 gem 'nokogiri'
 gem 'kaminari'
+gem 'closure_tree' # for nested comments
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'

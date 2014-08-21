@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
   validates_uniqueness_of :embed_code, :message => 'has already been imported.'
 
   has_many :votes
+  has_many :comments
   acts_as_taggable
 
   scope :by_created_at, ->(page) { order(created_at: :desc).page(page).per(5) }
