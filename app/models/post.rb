@@ -2,7 +2,6 @@ require 'open-uri'
 require 'nokogiri'
 
 class Post < ActiveRecord::Base
-  #attr_accessible :embed_code, :url, :link_type, :title, :artist, :description, :artist_url
   validates :embed_code, :url, :link_type, :title, :artist, presence: true
   validates_uniqueness_of :embed_code, :message => 'has already been imported.'
 
@@ -35,15 +34,21 @@ class Post < ActiveRecord::Base
       end
     end
 
-    false
+    raise
   end
 
   def setup
-
-    self.set_link_type
-    self.set_artist_title_embed_code_and_tags
-    self.set_description_and_artist_url
-
+    begin
+      if self.playable?
+        self.set_link_type
+        self.set_artist_title_embed_code_and_tags
+        self.set_description_and_artist_url
+      end
+    rescue
+      errors.add :base, 'Something went wrong. Please make sure you\'re submitting a valid Bandcamp URL containing playable audio.'
+      return false
+    end
+    true
   end
 
   def set_link_type

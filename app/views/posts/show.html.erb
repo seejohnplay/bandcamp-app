@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    <%= @post.title.html_safe %> by <%= @post.artist.html_safe %>
+  <%= @post.title.html_safe %> by <%= @post.artist.html_safe %>
 <% end %>
 <h2><%= @post.title.html_safe %> by <%= @post.artist.html_safe %></h2>
 
@@ -15,26 +15,26 @@
     </td>
     <td class="column1">
       <%= form_for [@post, @post.votes.build], remote: true do |f| %>
-          <%= f.hidden_field :direction, value: "up" %>
-          <%= f.submit "Vote Up", :type => :image, :src => "/assets/up-arrow-small.gif" %>
+        <%= f.hidden_field :direction, value: "up" %>
+        <%= f.submit "Vote Up", :type => :image, :src => "/assets/up-arrow-small.gif" %>
       <% end %>
     </td>
     <td>
       <%= form_for [@post, @post.votes.build], remote: true do |f| %>
-          <%= f.hidden_field :direction, value: "down" %>
-          <%= f.submit "Vote Up", :type => :image, :src => "/assets/down-arrow-small.gif" %>
+        <%= f.hidden_field :direction, value: "down" %>
+        <%= f.submit "Vote Up", :type => :image, :src => "/assets/down-arrow-small.gif" %>
       <% end %>
     </td>
     <% if @post.tag_list.size > 0 %>
-        <td>
-          Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-        </td>
+      <td>
+        Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+      </td>
     <% end %>
   </tr>
 </table>
 
 <div class="post_comments">
-  <%= render 'comments/comments_index', locals: { post: @post, comments: @comments } %>
+  <%= render 'comments/comments_index', locals: {post: @post, comments: @comments} %>
 </div>
 
 <br>

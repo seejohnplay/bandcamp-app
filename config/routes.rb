@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'tags/:tag', to: 'posts#index', as: :tag
 
-  resources :posts, :only => [:index, :new, :create, :show, :destroy] do
+  resources :posts, :except => [:update] do
     resources :votes, only: [:create]
     resources :comments, only: [:index, :new, :create]
   end

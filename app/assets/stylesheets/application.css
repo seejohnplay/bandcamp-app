@@ -16,22 +16,43 @@
  */
 
 @font-face {
-    font-family: 'Glyphicons Halflings';
-    src: url('../assets/glyphicons-halflings-regular.eot');
-    src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-    url('../assets/glyphicons-halflings-regular.woff') format('woff'),
-    url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
-    url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  font-family: 'Glyphicons Halflings';
+  src: url('../assets/glyphicons-halflings-regular.eot');
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  url('../assets/glyphicons-halflings-regular.woff') format('woff'),
+  url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
+  url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
-td.column1, td.column2 { width: 3%; text-align: right; }
-div.vote_number { font-size:20px; font-weight:bold; margin-top:-5px;}
+td.column1, td.column2 {
+  width: 3%;
+  text-align: right;
+}
 
-.css1 { font-size: 1.0em; }
-.css2 { font-size: 1.2em; }
-.css3 { font-size: 1.4em; }
-.css4 { font-size: 1.6em; }
+div.vote_number {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: -5px;
+}
+
+.css1 {
+  font-size: 1.0em;
+}
+
+.css2 {
+  font-size: 1.2em;
+}
+
+.css3 {
+  font-size: 1.4em;
+}
+
+.css4 {
+  font-size: 1.6em;
+}
 
 /* Bootstrap overrides */
 
-form.navbar-form.navbar-left { padding-right: 0px; }
+form.navbar-form.navbar-left {
+  padding-right: 0px;
+}

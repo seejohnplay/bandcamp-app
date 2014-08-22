@@ -22,18 +22,13 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(url: params[:post][:url])
-    begin
-      raise unless @post.playable?
-      @post.setup
-      if @post.save
-        redirect_to(posts_path, :notice => 'Post was successfully created.')
-      else
-        render 'new'
-      end
-    rescue
-      redirect_to new_post_path, :flash => {:error => 'Something went wrong. Please make sure you\'re submitting a valid Bandcamp URL containing playable audio.'}
+    if @post.setup && @post.save
+      redirect_to(posts_path, :notice => 'Post was successfully created.')
+    else
+      render 'new'
     end
   end
+
 
   def destroy
     post = Post.find(params[:id])
