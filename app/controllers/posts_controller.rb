@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(url: params[:post][:url]+'/')
+    @post = Post.new(url: params[:post][:url])
     begin
       raise unless @post.playable?
       @post.setup
