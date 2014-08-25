@@ -19,7 +19,7 @@
           <%= yield %>
         </div>
         <div class="col-md-3">
-          <% if @post && @post.description %>
+          <% if @post && @post.description && current_page?(post_path(@post))%>
             <h2>About The <%= @post.link_type.capitalize %></h2>
 
             <p><%= @post.description.html_safe %></p>
