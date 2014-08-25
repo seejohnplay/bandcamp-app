@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
       @comments = @post.comments.includes(:user)
       flash[:success] = 'Your comment was successfully added!'
       respond_to do |format|
-        format.js { render :file => 'comments/index.js.erb' }
+        format.js { render :file => 'comments/index' }
       end
     else
       render 'new'

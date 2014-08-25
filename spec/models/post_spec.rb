@@ -6,7 +6,7 @@ describe Post do
     @track_post = Post.new(url: (Rails.root + 'spec/support/track/RedoModernBaseball.html').to_s)
   end
 
-  describe 'setup album post' do
+  describe '#setup', 'album' do
     before do
       @album_post.setup
     end
@@ -29,7 +29,7 @@ describe Post do
     end
   end
 
-  describe 'setup track post' do
+  describe '#setup', 'track' do
     before do
       @track_post.setup
     end
