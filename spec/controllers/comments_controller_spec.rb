@@ -3,6 +3,33 @@ require 'rails_helper'
 describe CommentsController do
   let(:blog_post) { FactoryGirl.create(:post) }
 
+  describe 'GET #index' do
+    context 'when a comment exists'
+    it 'assigns @comments' do
+      comment = Comment.create(post_id: blog_post.id, body: 'First comment!')
+      xhr :get, :index, post_id: blog_post.id, format: :js
+      expect(assigns(:comments)).to eq([comment])
+    end
+
+    it 'renders the index template' do
+      xhr :get, :index, post_id: blog_post.id, format: :js
+      expect(response).to render_template(:index)
+    end
+  end
+
+  describe 'GET #new' do
+    context 'when instantiating a new comment for a post' do
+      it 'instantiates a new comment' do
+        xhr :get, :new, post_id: blog_post.id, format: :js
+        expect(assigns(:comment)).to be_a_new(Comment)
+      end
+      it 'renders the new template' do
+        xhr :get, :new, post_id: blog_post.id, format: :js
+        expect(response).to render_template(:new)
+      end
+    end
+  end
+
   describe 'POST #create' do
     context 'when comment is valid' do
       it 'renders the comments index partial' do
