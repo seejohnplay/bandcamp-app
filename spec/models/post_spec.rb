@@ -4,6 +4,7 @@ describe Post do
   before do
     @album_post = Post.new(url: (Rails.root + 'spec/support/album/HeadZirkusMissWalker.html').to_s)
     @track_post = Post.new(url: (Rails.root + 'spec/support/track/RedoModernBaseball.html').to_s)
+    @no_playable_content = Post.new(url: (Rails.root + 'spec/support/track/no_playable_content/MicksplosionsBigGiantCircles.html').to_s)
   end
 
   describe '#setup', 'album' do
@@ -52,6 +53,29 @@ describe Post do
     end
   end
 
+  describe '#setup', 'no playable content' do
+    before do
+      @no_playable_content.setup
+    end
+
+    it 'should not be valid' do
+      @no_playable_content.save
+
+      expect(@no_playable_content).to_not be_valid
+
+    end
+  end
+
+  describe '#calculate_popularity' do
+    it 'should return correct popularity number' do
+      @track_post.save
+      @track_post.votes.create(direction: 'up')
+      @track_post.votes.create(direction: 'down')
+      @track_post.votes.create(direction: 'up')
+
+      expect(@track_post.calculate_popularity).to eql(1)
+    end
+  end
 
   describe 'embed code' do
     it 'should not allow two posts with the same embed code' do

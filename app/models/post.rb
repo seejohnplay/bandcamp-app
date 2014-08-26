@@ -16,14 +16,13 @@ class Post < ActiveRecord::Base
     open(self.url).each_line do |line|
       if line.include? 'inline_player'
         return true
-        break
       end
     end
     errors.add(:url, 'does not contain playable content.')
   end
 
   def calculate_popularity
-    votes.where(direction: "up").count - votes.where(direction: "down").count
+    votes.where(direction: 'up').count - votes.where(direction: 'down').count
   end
 
   def to_param

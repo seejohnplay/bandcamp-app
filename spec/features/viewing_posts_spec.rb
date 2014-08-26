@@ -12,6 +12,14 @@ feature 'viewing posts' do
     expect(page).to have_content(post_track.title)
   end
 
+  scenario 'by tag' do
+    click_link post.title
+    first('.tags > a').click
+
+    expect(page).to have_content("All Posts tagged as '#{ post.tags.first.name }'")
+    expect(page).to have_content(post.title)
+  end
+
   scenario 'individually by clicking album title' do
     click_link post.title
 
