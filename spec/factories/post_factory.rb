@@ -3,8 +3,7 @@ FactoryGirl.define do
     url (Rails.root + 'spec/support/album/HeadZirkusMissWalker.html').to_s
 
     before(:create) do |post|
-      post.setup
-      post.save
+      PostCreator.create(post)
     end
   end
 end
