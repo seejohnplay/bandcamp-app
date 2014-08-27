@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe CommentsController do
-  let(:blog_post) { FactoryGirl.create(:post) }
+  let(:blog_post) { FactoryGirl.create(:post_album) }
 
   describe 'GET #index' do
     context 'when a comment exists'

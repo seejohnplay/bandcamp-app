@@ -1,56 +1,54 @@
 require 'rails_helper'
 
 describe PostCreator do
-  before do
-    @album_post = Post.new(url: (Rails.root + 'spec/support/album/HeadZirkusMissWalker.html').to_s)
-    @track_post = Post.new(url: (Rails.root + 'spec/support/track/RedoModernBaseball.html').to_s)
-    @no_playable_content = Post.new(url: (Rails.root + 'spec/support/track/no_playable_content/MicksplosionsBigGiantCircles.html').to_s)
-  end
+  let!(:post_album) { FactoryGirl.create(:post_album) }
+  let!(:post_track) { FactoryGirl.create(:post_track) }
 
   describe '.create', 'album' do
     before do
-      PostCreator.create(@album_post)
+      PostCreator.create(post_album)
     end
 
     it 'should properly extract attributes from HTML Bandcamp album page' do
-      expect(@album_post.url).to eql((Rails.root + 'spec/support/album/HeadZirkusMissWalker.html').to_s)
-      expect(@album_post.embed_code).to eql(3664776922)
-      expect(@album_post.link_type).to eql('album')
-      expect(@album_post.title).to eql('He(a)d Zirkus')
-      expect(@album_post.artist).to eql('Miss Walker')
-      expect(@album_post.description[0..11]).to eql('<br />He(a)d')
-      expect(@album_post.artist_url).to eql('')
-      expect(@album_post.popularity).to eql(0)
+      expect(post_album.url).to eql((Rails.root + 'spec/support/album/HeadZirkusMissWalker.html').to_s)
+      expect(post_album.embed_code).to eql(3664776922)
+      expect(post_album.link_type).to eql('album')
+      expect(post_album.title).to eql('He(a)d Zirkus')
+      expect(post_album.artist).to eql('Miss Walker')
+      expect(post_album.description[0..11]).to eql('<br />He(a)d')
+      expect(post_album.artist_url).to eql('')
+      expect(post_album.popularity).to eql(0)
     end
 
     it 'should create a valid album post' do
-      expect(@album_post).to be_valid
+      expect(post_album).to be_valid
     end
   end
 
   describe '.create', 'track' do
     before do
-      PostCreator.create(@track_post)
+      PostCreator.create(post_track)
     end
 
     it 'should properly extract attributes from HTML Bandcamp single track page' do
-      expect(@track_post.url).to eql((Rails.root + 'spec/support/track/RedoModernBaseball.html').to_s)
-      expect(@track_post.embed_code).to eql(966522966)
-      expect(@track_post.link_type).to eql('track')
-      expect(@track_post.title).to eql('Re-do')
-      expect(@track_post.artist).to eql('Modern Baseball')
-      expect(@track_post.description[0..11]).to eql('<br />Re-do ')
-      expect(@track_post.artist_url).to eql('http://modernbaseball.limitedrun.com')
-      expect(@track_post.popularity).to eql(0)
+      expect(post_track.url).to eql((Rails.root + 'spec/support/track/RedoModernBaseball.html').to_s)
+      expect(post_track.embed_code).to eql(966522966)
+      expect(post_track.link_type).to eql('track')
+      expect(post_track.title).to eql('Re-do')
+      expect(post_track.artist).to eql('Modern Baseball')
+      expect(post_track.description[0..11]).to eql('<br />Re-do ')
+      expect(post_track.artist_url).to eql('http://modernbaseball.limitedrun.com')
+      expect(post_track.popularity).to eql(0)
     end
 
     it 'should create a valid track post' do
-      expect(@track_post).to be_valid
+      expect(post_track).to be_valid
     end
   end
 
   describe '.create', 'no playable content' do
     before do
+      @no_playable_content = Post.new(url: (Rails.root + 'spec/support/track/no_playable_content/MicksplosionsBigGiantCircles.html').to_s)
       PostCreator.create(@no_playable_content)
     end
 
