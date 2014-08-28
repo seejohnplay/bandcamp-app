@@ -5,6 +5,8 @@ gem 'acts-as-taggable-on' # for post tags
 gem 'nokogiri' # for HTML parsing and scraping
 gem 'kaminari' # for pagination
 gem 'closure_tree' # for nested comments
+gem 'sunspot_rails'  # for solr search
+gem 'sunspot_solr'   # for solr
 
 # rspec and capybara for testing
 gem 'rspec-rails', '~> 3.0.0', group: [:test, :development]

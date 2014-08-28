@@ -1,0 +1,21 @@
+<tr>
+  <td>
+    <%= link_to post.title.html_safe, post_path(post) %> by <%= post.artist.html_safe %>
+    <%= link_to 'Destroy', post, data: {confirm: 'Are you sure?'}, :method => :delete, :class => 'btn-danger btn-xs', :style => 'border-radius: 5px; padding: 3px;' %>
+  </td>
+  <td class="column2">
+    <div class="vote_number" id="vote_number-<%= post.id %>"><%= post.popularity %></div>
+  </td>
+  <td class="column1">
+    <%= form_for [post, post.votes.build], remote: true do |f| %>
+      <%= f.hidden_field :direction, value: "up" %>
+      <%= f.submit "Vote Up", :type => :image, :src => "/assets/up-arrow-small.gif" %>
+    <% end %>
+  </td>
+  <td class="column3">
+    <%= form_for [post, post.votes.build], remote: true do |f| %>
+      <%= f.hidden_field :direction, value: "down" %>
+      <%= f.submit "Vote Up", :type => :image, :src => "/assets/down-arrow-small.gif" %>
+    <% end %>
+  </td>
+</tr>

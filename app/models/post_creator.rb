@@ -6,7 +6,7 @@ class PostCreator
   attr_accessor :post
 
   class << self
-    def create(post)
+    def create post
       @post = post
       begin
         set_link_type
