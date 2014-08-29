@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe PostCreator do
-  let!(:post_album) { FactoryGirl.create(:post_album) }
-  let!(:post_track) { FactoryGirl.create(:post_track) }
+  let(:post_album) { FactoryGirl.build(:post_album) }
+  let(:post_track) { FactoryGirl.build(:post_track) }
 
   describe '.create', 'album' do
     before do
