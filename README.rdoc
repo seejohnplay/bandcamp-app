@@ -4,6 +4,25 @@ A Rails app assisting in new musical discoveries through web scraping (nokogiri,
 
 (8/15/2014) Updated from Rails 3.2 to Rails 4.1
 
+== Getting Started
+
+To install:
+
+1. git clone git@github.com:crestcode/bandcamp-app.git
+2. cd bandcamp-app
+3. bundle install
+4. rake db:migrate
+5. mv .env-example .env (this example .env will make tests pass, but will need valid values for app)
+6. RAILS_ENV=test rake sunspot:solr:start
+7. RAILS_ENV=test rake sunspot:reindex
+8. rspec
+9. rake sunspot:solr:start
+10. rake sunspot:reindex
+11. rails s
+
+Point your browser to localhost:3000 and add a new post by copy-and-pasting a valid Bandcamp URL into
+the new post form (example: http://shakeygraves.bandcamp.com/album/roll-the-bones)
+
 == Copyright
 
 The MIT License (MIT)

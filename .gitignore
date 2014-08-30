@@ -18,3 +18,4 @@
 /coverage
 .env
 /solr
+soundcloud.rb
