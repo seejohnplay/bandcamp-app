@@ -21,7 +21,7 @@ To install:
 11. rails s
 
 Point your browser to localhost:3000 and add a new post by copy-and-pasting a valid Bandcamp URL into
-the new post form (example:http://shakeygraves.bandcamp.com/album/roll-the-bones)
+the new post form (example: [http://shakeygraves.bandcamp.com/album/roll-the-bones])
 
 == Copyright
 
