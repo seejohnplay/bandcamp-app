@@ -9,9 +9,11 @@
   <%= render @posts %>
   </tbody>
 </table>
-
-<%= link_to 'Submit new post', new_post_path, :class => 'btn btn-primary' %>
-<br/><br/>
+<% if user_signed_in? %>
+  <%= link_to 'Submit new post', new_post_path, :class => 'btn btn-primary' %>
+  <br/>
+<% end %>
+<br/>
 <fieldset>
   <legend>Tags</legend>
   <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>

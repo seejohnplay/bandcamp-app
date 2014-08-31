@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 feature 'creating posts' do
+  let(:user) { FactoryGirl.create(:user) }
+
   before do
+    sign_in_user(user.email, user.password)
     visit '/'
     click_link 'Submit new post'
   end
@@ -32,5 +35,11 @@ feature 'creating posts' do
     click_button 'Submit the URL!'
 
     expect(page).to have_content('Embed code has already been imported.')
+  end
+
+  scenario 'user must be signed in to create post' do
+    sign_out_user
+    visit '/'
+    expect(page).to_not have_content 'Submit new post'
   end
 end

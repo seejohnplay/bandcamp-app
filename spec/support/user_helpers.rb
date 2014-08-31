@@ -11,6 +11,11 @@ module UserHelpers
     fill_in 'Password', with: user_password
     click_button 'Sign in'
   end
+
+  def sign_out_user
+    visit '/'
+    click_link 'Sign out'
+  end
 end
 
 RSpec.configure do |c|
