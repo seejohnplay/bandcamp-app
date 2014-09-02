@@ -7,14 +7,11 @@ class PostsController < ApplicationController
     else
       @posts = Post.by_created_at(params[:page])
     end
-
-    @tags = Post.tag_counts_on(:tags)
   end
 
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments.includes(:user)
-    @player_code = @post.get_player_code
   end
 
   def new
@@ -23,7 +20,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    if PostCreator.create(@post)
+    if @post.save
       redirect_to(posts_path, :notice => 'Post was successfully created.')
     else
       render 'new'

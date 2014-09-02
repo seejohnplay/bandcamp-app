@@ -16,7 +16,7 @@ class PostCreator
         @post.errors.add :base, 'Something went wrong. Please make sure you\'re submitting a valid Bandcamp URL containing playable audio.'
         return false
       end
-      @post.save
+      @post
     end
 
     private

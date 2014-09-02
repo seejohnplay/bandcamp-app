@@ -3,7 +3,7 @@
 <% end %>
 <h2><%= @post.title.html_safe %> by <%= @post.artist.html_safe %></h2>
 
-<%= raw @player_code %>
+<%= raw @post.get_player_code %>
 <br>
 <table class="table table-striped table-hover table-condensed table-nonfluid">
   <tr>

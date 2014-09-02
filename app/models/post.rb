@@ -1,6 +1,10 @@
 require 'open-uri'
 
 class Post < ActiveRecord::Base
+  before_validation(on: :create) do
+    PostCreator.create(self)
+  end
+
   validates_uniqueness_of :embed_code, :message => 'has already been imported.'
   validate :url_contains_playable_content
 
