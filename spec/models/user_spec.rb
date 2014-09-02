@@ -48,4 +48,21 @@ describe User do
       expect(user).to_not be_valid
     end
   end
+
+  describe 'roles' do
+    let!(:user) { FactoryGirl.create(:user)}
+
+    it 'assigns first user role to admin by default' do
+      expect(user.admin?).to be true
+      expect(user.role).to eql('admin')
+    end
+
+    it 'assigns all other user\'s role to contributor by default' do
+      another_user = FactoryGirl.create(:user)
+
+      expect(another_user.admin?).to be false
+      expect(another_user.contributor?).to be true
+      expect(another_user.role).to eql('contributor')
+    end
+  end
 end
