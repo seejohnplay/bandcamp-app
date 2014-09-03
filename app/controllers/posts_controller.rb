@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy]
+  before_action :require_admin, only: [:destroy]
 
   def index
     if @tag = params[:tag]
@@ -21,7 +22,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to(posts_path, :notice => 'Post was successfully created.')
+      redirect_to(posts_path, notice: 'Post was successfully created.')
     else
       render 'new'
     end
@@ -31,13 +32,17 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to(posts_path, :notice => 'Post was destroyed.')
+    redirect_to(posts_path, notice: 'Post was destroyed.')
   end
 
   private
 
   def post_params
     params.required(:post).permit(:embed_code, :url, :link_type, :title, :artist, :description, :artist_url)
+  end
+
+  def require_admin
+    redirect_to(posts_path, notice: 'You are not authorized to perform that action') unless current_user.admin?
   end
 
 end

@@ -1,7 +1,7 @@
 <tr>
   <td>
     <%= link_to post.title.html_safe, post_path(post) %> by <%= post.artist.html_safe %>
-    <% if user_signed_in? %>
+    <% if user_signed_in? && current_user.admin? %>
       <%= link_to 'Destroy', post, data: {confirm: 'Are you sure?'}, :method => :delete, :class => 'btn-danger btn-xs', :style => 'border-radius: 5px; padding: 3px;' %>
     <% end %>
   </td>

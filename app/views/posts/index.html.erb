@@ -1,5 +1,5 @@
 <h2>All Posts <%= "tagged as '#{@tag}'" if @tag %>
-  <div style='float:right'><%= link_to 'Show all posts', posts_path if @tag %></div>
+  <div style='float:right'><%= link_to 'Show all posts', posts_path, :class => 'btn btn-default' if @tag %></div>
 </h2>
 
 <%= paginate @posts %>

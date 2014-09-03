@@ -1,7 +1,9 @@
 <% content_for :title do %>
   <%= @post.title.html_safe %> by <%= @post.artist.html_safe %>
 <% end %>
-<h2><%= @post.title.html_safe %> by <%= @post.artist.html_safe %></h2>
+<h2><%= @post.title.html_safe %> by <%= @post.artist.html_safe %>
+  <div style='float:right'><%= link_to 'Show all posts', posts_path, :class => 'btn btn-default' %></div>
+</h2>
 
 <%= raw @post.get_player_code %>
 <br>
@@ -38,6 +40,3 @@
 <div class="post_comments">
   <%= render 'comments/comments_index', locals: {post: @post, comments: @comments} %>
 </div>
-
-<br>
-<%= link_to 'Back to all posts', posts_path, :class => 'btn btn-default' %>

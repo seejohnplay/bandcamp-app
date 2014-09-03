@@ -1,5 +1,5 @@
 <h2>All Posts matching '<%= @search.term %>'
-  <div style='float:right'><%= link_to 'Show all posts', posts_path %></div>
+  <div style='float:right'><%= link_to 'Show all posts', posts_path, :class => 'btn btn-default' %></div>
 </h2>
 
 <%= paginate @search.posts %>
