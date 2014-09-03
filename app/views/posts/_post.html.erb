@@ -6,20 +6,14 @@
     <% end %>
   </td>
   <td class="column2">
-    <div class="vote_number" id="vote_number-<%= post.id %>"><%= post.popularity %></div>
+    <div id="star_<%= post.id %>"></div>
   </td>
-  <% if user_signed_in? %>
-    <td class="column1">
-      <%= form_for [post, post.votes.build], remote: true do |f| %>
-        <%= f.hidden_field :direction, value: "up" %>
-        <%= f.submit 'Vote up', :type => :image, :src => '/assets/up-arrow-small.gif' %>
-      <% end %>
-    </td>
-    <td class="column3">
-      <%= form_for [post, post.votes.build], remote: true do |f| %>
-        <%= f.hidden_field :direction, value: "down" %>
-        <%= f.submit 'Vote down', :type => :image, :src => '/assets/down-arrow-small.gif' %>
-      <% end %>
-    </td>
-  <% end %>
 </tr>
+
+<script>
+  $('#star_<%= post.id %>').raty({
+    readOnly: true,
+    score: <%= post.average_rating %>,
+    path: '/assets'
+  });
+</script>

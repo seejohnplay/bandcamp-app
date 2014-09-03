@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
 
   has_many :votes
   has_many :comments
+  has_many :ratings
   acts_as_taggable
 
   scope :by_created_at, ->(page) { order(created_at: :desc).page(page).per(5) }
@@ -41,4 +42,12 @@ class Post < ActiveRecord::Base
     %-<iframe width="400" height="100" style="position: relative; display: block; width: 400px; height: 100px;" src="http://bandcamp.com/EmbeddedPlayer/v=2/#{self.link_type}=#{self.embed_code}/size=venti/bgcol=FFFFFF/linkcol=4285BB/" allowtransparency="true" frameborder="0"></iframe>-
   end
 
+  def average_rating
+    positive_ratings.sum(:score) / (positive_ratings.size.nonzero? || 1).to_f
+  end
+
+  private
+    def positive_ratings
+      ratings.where("score > ?", 0)
+    end
 end

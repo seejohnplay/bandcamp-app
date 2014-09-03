@@ -13,6 +13,10 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments.includes(:user)
+    if user_signed_in?
+      @rating = Rating.where(post_id: @post.id, user_id: current_user.id).first ||
+          Rating.create(post_id: @post.id, user_id: current_user.id, score: 0)
+    end
   end
 
   def new

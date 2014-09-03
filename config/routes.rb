@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'tags/:tag', to: 'posts#index', as: :tag
 
   resource :search, only: [:show]
+  resources :ratings, only: [:update]
   resources :posts, :except => [:update] do
     resources :votes, only: [:create]
     resources :comments, only: [:index, :new, :create]
