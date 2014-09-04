@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
 
   has_many :votes
   has_many :comments
-  has_many :ratings
+  has_many :ratings, -> { where("score > ?", 0) }
   acts_as_taggable
 
   scope :by_created_at, ->(page) { order(created_at: :desc).page(page).per(5) }
@@ -43,11 +43,6 @@ class Post < ActiveRecord::Base
   end
 
   def average_rating
-    positive_ratings.sum(:score) / (positive_ratings.size.nonzero? || 1).to_f
+    ratings.sum(:score) / (ratings.size.nonzero? || 1).to_f
   end
-
-  private
-    def positive_ratings
-      ratings.where("score > ?", 0)
-    end
 end
