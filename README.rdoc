@@ -14,7 +14,6 @@ To install:
 4. rake db:migrate
 5. mv .env-example .env (this example .env will make tests pass, but will need valid values for app)
 6. RAILS_ENV=test rake sunspot:solr:start
-7. RAILS_ENV=test rake sunspot:reindex
 8. rspec
 9. rake sunspot:solr:start
 10. rake sunspot:reindex
