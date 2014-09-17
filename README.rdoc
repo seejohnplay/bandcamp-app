@@ -22,6 +22,11 @@ To install:
 Point your browser to localhost:3000 and add a new post by copy-and-pasting a valid Bandcamp URL into
 the new post form and clicking submit.
 
+Heroku demo: http://bandcampapp.herokuapp.com/
+Sign up or use the test account:
+test@test.com (email)
+password (password)
+
 == Copyright
 
 The MIT License (MIT)
