@@ -57,12 +57,15 @@
           data: { score: score }
         }).done(function() {
           $('#user_star').raty({
+            score: <%= @rating.score %>,
             path: '',
             starOn: '<%= image_path('star-on.png') %>',
             starOff: '<%= image_path('star-off.png') %>',
             starHalf: '<%= image_path('star-half.png') %>'
           });
           $('#star').raty({
+            readOnly: true,
+            score: <%= @post.average_rating %>,
             path: '',
             starOn: '<%= image_path('star-on.png') %>',
             starOff: '<%= image_path('star-off.png') %>',
