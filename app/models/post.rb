@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
   end
 
   validates_uniqueness_of :embed_code, :message => 'has already been imported.'
+  validates_presence_of :artist, :title
   validate :url_contains_playable_content
 
   has_many :votes
