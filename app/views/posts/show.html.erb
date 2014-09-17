@@ -38,7 +38,10 @@
   $('#star').raty({
     readOnly: true,
     score: <%= @post.average_rating %>,
-    path: '/assets'
+    path: '',
+    starOn: '<%= image_path('star-on.png') %>',
+    starOff: '<%= image_path('star-off.png') %>',
+    starHalf: '<%= image_path('star-half.png') %>'
   });
   <% if user_signed_in? %>
     $('#user_star').raty({
