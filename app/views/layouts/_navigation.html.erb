@@ -33,12 +33,14 @@
           <li><%= link_to 'Sign in', new_user_session_path %></li>
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
         <% end %>
-        <li>
-          <%= form_for(:search, url: search_path, method: :get, :html => {class: 'navbar-form navbar-right'}) do |form| %>
-            <%= form.text_field :term %>
-            <%= form.submit 'Search' %>
-          <% end %>
-        </li>
+        <% unless Rails.env.production? %>
+          <li>
+            <%= form_for(:search, url: search_path, method: :get, :html => {class: 'navbar-form navbar-right'}) do |form| %>
+              <%= form.text_field :term %>
+              <%= form.submit 'Search' %>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
     </div>
     <!-- /.navbar-collapse -->

@@ -16,9 +16,11 @@ class Post < ActiveRecord::Base
   scope :by_created_at, ->(page) { order(created_at: :desc).page(page).per(5) }
   scope :by_tag, ->(tag, page) { tagged_with(tag).by_created_at(page) }
 
-  searchable do
-    text :artist
-    text :title
+  unless Rails.env.production?
+    searchable do
+        text :artist
+        text :title
+    end
   end
 
   def url_contains_playable_content
