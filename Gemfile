@@ -8,6 +8,7 @@ gem 'closure_tree' # for nested comments
 gem 'sunspot_rails'  # for solr search
 gem 'sunspot_solr'   # for solr
 gem 'progress_bar' # for solr reindex progress bar
+gem 'rails_12factor', group: :production # for heroku
 
 # rspec and capybara for testing
 gem 'rspec-rails', '~> 3.0.0', group: [:test, :development]
