@@ -55,7 +55,7 @@
           url: '/ratings/' + <%= @rating.id %>,
           type: 'PATCH',
           data: { score: score }
-        ).done(function() {
+        }).done(function() {
           $(this).raty({
             path: '',
             starOn: '<%= image_path('star-o.png') %>',
