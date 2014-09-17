@@ -1,17 +1,24 @@
 $('#star').raty({
   readOnly: true,
   score: <%= @post.average_rating %>,
-  path: '/assets'
+  path: '',
+  starOn: '<%= image_path('star-on.png') %>',
+  starOff: '<%= image_path('star-off.png') %>',
+  starHalf: '<%= image_path('star-half.png') %>'
 });
-
-$('#user_star').raty({
-  score: <%= @rating.score %>,
-  path: '/assets',
-  click: function(score, evt) {
-    $.ajax({
-      url: '/ratings/' + <%= @rating.id %>,
-      type: 'PATCH',
-      data: { score: score }
-    }).done(function (data){});
-  }
-});
+<% if user_signed_in? %>
+  $('#user_star').raty({
+    score: <%= @rating.score %>,
+    path: '',
+    starOn: '<%= image_path('star-on.png') %>',
+    starOff: '<%= image_path('star-off.png') %>',
+    starHalf: '<%= image_path('star-half.png') %>',
+    click: function(score, evt) {
+      $.ajax({
+        url: '/ratings/' + <%= @rating.id %>,
+        type: 'PATCH',
+        data: { score: score }
+      }).done(function (data){});
+    }
+  });
+<% end %>
