@@ -55,6 +55,13 @@
           url: '/ratings/' + <%= @rating.id %>,
           type: 'PATCH',
           data: { score: score }
+        ).done(function() {
+          $(this).raty({
+            path: '',
+            starOn: '<%= image_path('star-o.png') %>',
+            starOff: '<%= image_path('star-of.png') %>',
+            starHalf: '<%= image_path('star-half.png') %>'
+          });
         });
       }
     });
