@@ -21,7 +21,7 @@ feature 'creating posts' do
     fill_in 'Bandcamp URL', with: 'http://invalid.url'
     click_button 'Submit the URL!'
 
-    expect(page).to have_content('Something went wrong. Please make sure you\'re submitting a valid Bandcamp URL containing playable audio.')
+    expect(page).to have_content('Something went wrong. Please make sure you\'re submitting a valid Bandcamp or Soundcloud URL containing playable audio.')
   end
 
   scenario 'with the same valid url twice' do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903192943) do
+ActiveRecord::Schema.define(version: 20140918223946) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140903192943) do
     t.text     "description"
     t.string   "artist_url"
     t.integer  "popularity",  default: 0, null: false
+    t.string   "post_type"
   end
 
   create_table "ratings", force: true do |t|

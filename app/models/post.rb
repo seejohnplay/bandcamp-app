@@ -25,12 +25,16 @@ class Post < ActiveRecord::Base
   end
 
   def url_contains_playable_content
-    open(self.url).each_line do |line|
-      if line.include? 'inline_player'
-        return true
+    if self.post_type == 'Bandcamp'
+      open(self.url).each_line do |line|
+        if line.include? 'inline_player'
+          return true
+        end
       end
+      errors.add(:url, 'does not contain playable content.')
+    else
+      true
     end
-    errors.add(:url, 'does not contain playable content.')
   end
 
   def calculate_popularity
@@ -42,10 +46,18 @@ class Post < ActiveRecord::Base
   end
 
   def get_player_code
-    %-<iframe width="400" height="100" style="position: relative; display: block; width: 400px; height: 100px;" src="http://bandcamp.com/EmbeddedPlayer/v=2/#{self.link_type}=#{self.embed_code}/size=venti/bgcol=FFFFFF/linkcol=4285BB/" allowtransparency="true" frameborder="0"></iframe>-
+    if self.soundcloud?
+      %-<iframe width='400' height='110' scrolling='no' frameborder='no' src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/#{self.embed_code}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=false'></iframe>-
+    else
+      %-<iframe width="400" height="100" style="position: relative; display: block; width: 400px; height: 100px;" src="http://bandcamp.com/EmbeddedPlayer/v=2/#{self.link_type}=#{self.embed_code}/size=venti/bgcol=FFFFFF/linkcol=4285BB/" allowtransparency="true" frameborder="0"></iframe>-
+    end
   end
 
   def average_rating
     ratings.sum(:score) / (ratings.size.nonzero? || 1).to_f
+  end
+
+  def soundcloud?
+    self.url.include?('soundcloud')
   end
 end
