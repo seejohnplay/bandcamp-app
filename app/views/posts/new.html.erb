@@ -7,9 +7,9 @@
     <% end %>
     <legend>Submit a new post</legend>
     <div class="control-group">
-      <%= f.label :url, 'Bandcamp URL:', :class => 'control-label' %>
+      <%= f.label :url, 'Bandcamp or SoundCloud URL', :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :url, :placeholder => 'ex. http://shakeygraves.bandcamp.com/album/roll-the-bones', :class => 'text_field input-xlarge' %>
+        <%= f.text_field :url, :size => 55, :placeholder => 'ex. https://soundcloud.com/the-staves/blood-i-bled', :class => 'text_field' %>
       </div>
     </div>
     <br>

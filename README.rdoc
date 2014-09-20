@@ -1,7 +1,8 @@
 == Bandcamp App
 
-A Rails app assisting in new musical discoveries through web scraping (nokogiri, open-uri) Bandcamp music release pages.
+A Rails app assisting in new musical discoveries through web scraping (nokogiri, open-uri) Bandcamp music release pages and the SoundCloud API.
 
+(9/20/2014) Added support for importing discoveries through the SoundCloud API
 (8/15/2014) Updated from Rails 3.2 to Rails 4.1
 
 == Getting Started
@@ -12,7 +13,7 @@ To install:
 2. cd bandcamp-app
 3. bundle install
 4. rake db:migrate
-5. mv .env-example .env (this example .env will make tests pass, but will need valid values for app)
+5. mv .env-example .env (this .env will make tests pass, but you will need valid values for the app)
 6. RAILS_ENV=test rake sunspot:solr:start
 8. rspec
 9. rake sunspot:solr:start
