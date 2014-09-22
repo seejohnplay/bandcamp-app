@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= request.params[:controller] %> <%= request.params[:action] %>">
 
 <%= render 'layouts/navigation' %>
 
@@ -19,7 +19,7 @@
           <%= yield %>
         </div>
         <div class="col-md-3">
-          <% if @post && @post.description && current_page?(post_path(@post))%>
+          <% if @post && @post.description.present? && current_page?(post_path(@post))%>
             <h2>About The <%= @post.link_type.capitalize %></h2>
 
             <p><%= @post.description.html_safe %></p>
@@ -29,11 +29,11 @@
             <h2>About The App</h2>
 
             <p>
-              Music Discovery App is a web scraping tool for Bandcamp music release pages. Since they stopped handing
-              out developer keys over a year ago, I had to come up with another way to construct embedded music
-              players automatically with only a Bandcamp URL. After completing the original task, I decided to keep
-              going and grab additional page data like tags and incorporate it into a music discovery app. Happy music
-              hunting!! ♫♫
+              Music Discovery App is a bookmarking tool for Bandcamp and SoundCloud music release pages. I wanted to
+              create an easy way to embed music players from both sites from simply submitting a URL containing playable
+              content as well as grab additional information from each submission such as tags, description, and artist links.
+              SoundCloud API makes this process pretty painless, but BC pages need to be manually scraped since
+              developer keys have been difficult to obtain. Happy music listening!! ♫♫
             </p>
           <% end %>
         </div>

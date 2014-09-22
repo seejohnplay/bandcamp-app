@@ -32,7 +32,7 @@ class PostCreatorSoundcloud
       tags << @track.user.username
       tags.map!(&:downcase)
 
-      tags.each { |tag| @post.tag_list.add(tag) }
+      tags.each { |tag| @post.tag_list.add(tag.gsub('.', '')) }
     end
   end
 end

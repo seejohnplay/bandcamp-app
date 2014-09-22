@@ -29,8 +29,8 @@ class PostCreatorBandcamp
     end
 
     def set_tags
-      @doc.css("a[@class=tag]").each { |tag| @post.tag_list.add(tag.text) }
-      @post.tag_list.add(@post.artist.downcase) if @post.artist
+      @doc.css("a[@class=tag]").each { |tag| @post.tag_list.add(tag.text.gsub('.', '')) }
+      @post.tag_list.add(@post.artist.downcase.gsub('.', '')) if @post.artist
     end
   end
 end
