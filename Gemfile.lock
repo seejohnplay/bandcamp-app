@@ -61,6 +61,19 @@ GEM
     dotenv-deployment (0.0.2)
     dotenv-rails (0.11.1)
       dotenv (= 0.11.1)
+    elasticsearch (1.0.5)
+      elasticsearch-api (= 1.0.5)
+      elasticsearch-transport (= 1.0.5)
+    elasticsearch-api (1.0.5)
+      multi_json
+    elasticsearch-model (0.1.5)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.5)
+    elasticsearch-transport (1.0.5)
+      faraday
+      multi_json
     erubis (2.7.0)
     execjs (2.2.1)
     factory_girl (4.4.0)
@@ -68,6 +81,8 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     hashie (2.1.2)
     highline (1.6.21)
     hike (1.2.3)
@@ -220,6 +235,8 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   dotenv-rails
+  elasticsearch-model
+  elasticsearch-rails
   factory_girl_rails
   jbuilder (~> 2.0)
   jquery-rails

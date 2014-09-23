@@ -1,6 +1,10 @@
 require 'open-uri'
+require 'elasticsearch/model'
 
 class Post < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   before_validation(on: :create) do
     PostCreator.create(self)
   end
@@ -61,3 +65,5 @@ class Post < ActiveRecord::Base
     self.url.include?('soundcloud')
   end
 end
+
+Post.import # for elasticsearch

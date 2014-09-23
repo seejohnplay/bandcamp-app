@@ -10,6 +10,8 @@ gem 'sunspot_solr'   # for solr
 gem 'progress_bar' # for solr reindex progress bar
 gem 'soundcloud' # for soundcloud api
 gem 'rails_12factor', group: :production # for heroku
+gem 'elasticsearch-model' # for elasticsearch
+gem 'elasticsearch-rails' # for elasticsearch
 
 # rspec and capybara for testing
 gem 'rspec-rails', '~> 3.0.0', group: [:test, :development]

@@ -1,11 +1,15 @@
-<h2>All Posts matching '<%= @search.term %>'
+<h2>All Posts matching '<%= params[:q] %>'
   <div style='float:right'><%= link_to 'Show all posts', posts_path, :class => 'btn btn-default' %></div>
 </h2>
 
-<%= paginate @search.posts %>
+<% if @search.results.total > 0 %>
+  <%= paginate @search %>
 
-<table class="table table-striped table-hover table-condensed table-nonfluid">
-  <tbody>
-  <%= render @search.posts %>
-  </tbody>
-</table>
+  <table class="table table-striped table-hover table-condensed table-nonfluid">
+    <tbody>
+    <%= render @search.records.to_a %>
+    </tbody>
+  </table>
+<% else %>
+  No results found.
+<% end %>

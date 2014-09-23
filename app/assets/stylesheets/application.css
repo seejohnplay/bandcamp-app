@@ -50,7 +50,7 @@ div.vote_number {
 
 /* Bootstrap overrides */
 
-form.navbar-form.navbar-left {
+form.navbar-form.navbar-right {
   padding-right: 0px;
+  margin-top: 12px;
 }
-
