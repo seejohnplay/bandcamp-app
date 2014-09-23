@@ -31,6 +31,7 @@ GEM
       activerecord (>= 3, < 5)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
+    bonsai-elasticsearch-rails (0.0.4)
     builder (3.2.2)
     capybara (2.4.1)
       mime-types (>= 1.16)
@@ -230,6 +231,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  bonsai-elasticsearch-rails
   capybara
   closure_tree
   coffee-rails (~> 4.0.0)
