@@ -12,6 +12,7 @@ gem 'soundcloud' # for soundcloud api
 gem 'rails_12factor', group: :production # for heroku
 gem 'elasticsearch-model' # for elasticsearch
 gem 'elasticsearch-rails' # for elasticsearch
+gem 'bonsai-elasticsearch-rails', group: :production # for Bonsai plugin on heroku
 
 # rspec and capybara for testing
 gem 'rspec-rails', '~> 3.0.0', group: [:test, :development]
