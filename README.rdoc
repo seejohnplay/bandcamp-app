@@ -3,6 +3,8 @@
 Music Discovery App is a bookmarking tool for Bandcamp and SoundCloud music release pages.
 
 
+(9/23/2014) Switch from Solr to ElasticSearch for free-tier search in Heroku production environment
+
 (9/20/2014) Added support for importing tracks and playlists through the SoundCloud API
 
 (8/15/2014) Updated from Rails 3.2 to Rails 4.1
@@ -16,11 +18,9 @@ To install:
 3. bundle install
 4. rake db:migrate
 5. mv .env-example .env (this .env will make tests pass, but you will need valid values for the app)
-6. RAILS_ENV=test rake sunspot:solr:start
-8. rspec
-9. rake sunspot:solr:start
-10. rake sunspot:reindex
-11. rails s
+6. elasticsearch
+7. rspec
+8. rails s
 
 Point your browser to localhost:3000 and add a new post by copy-and-pasting a valid Bandcamp URL into
 the new post form and clicking submit.
