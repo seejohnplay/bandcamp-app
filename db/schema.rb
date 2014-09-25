@@ -11,19 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918223946) do
-
-  create_table "comments", force: true do |t|
-    t.text     "body"
-    t.integer  "post_id"
-    t.integer  "user_id"
-    t.integer  "parent_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+ActiveRecord::Schema.define(version: 20141001185758) do
 
   create_table "posts", force: true do |t|
     t.string   "url"
@@ -49,6 +37,18 @@ ActiveRecord::Schema.define(version: 20140918223946) do
 
   add_index "ratings", ["post_id"], name: "index_ratings_on_post_id"
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
+
+  create_table "reviews", force: true do |t|
+    t.text     "body"
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["post_id"], name: "index_reviews_on_post_id"
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

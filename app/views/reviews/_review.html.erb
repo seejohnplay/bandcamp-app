@@ -1,0 +1,8 @@
+<div class="well">
+  <p class="text-muted">Added by <strong><%= review.user_id ? review.user.name : 'anonymous' %></strong> on
+    <%= l(review.created_at, format: '%B, %d %Y %H:%M:%S') %></p>
+
+  <blockquote>
+    <p><%= review.body %></p>
+  </blockquote>
+</div>

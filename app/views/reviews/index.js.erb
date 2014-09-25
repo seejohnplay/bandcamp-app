@@ -1,0 +1,1 @@
+$("div.post_reviews").html("<%= escape_javascript(render 'reviews_index', locals: { reviews: @reviews, post: @post } ) %>")

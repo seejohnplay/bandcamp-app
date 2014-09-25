@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
   validate :url_contains_playable_content
 
   has_many :votes
-  has_many :comments
+  has_many :reviews
   has_many :ratings, -> { where("score > ?", 0) }
   acts_as_taggable
 

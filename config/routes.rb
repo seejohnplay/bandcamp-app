@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :ratings, only: [:update]
   resources :posts, :except => [:update] do
     resources :votes, only: [:create]
-    resources :comments, only: [:index, :new, :create]
+    resources :reviews, only: [:index, :new, :create]
   end
 end
