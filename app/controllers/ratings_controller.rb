@@ -1,4 +1,5 @@
 class RatingsController < ApplicationController
+  before_action :authenticate_user!
 
   def update
     @rating = Rating.find(params[:id])

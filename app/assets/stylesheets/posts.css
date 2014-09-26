@@ -1,0 +1,22 @@
+#post_rating {
+  float: right;
+  width: 100px;
+}
+#user_star {
+  display: block;
+}
+
+@media (max-width: 530px) {
+  #post_rating {
+    float: left;
+    width: 500px;
+  }
+
+  #star {
+    margin-right: 10px;
+  }
+
+  #user_star {
+    display: inline;
+  }
+}

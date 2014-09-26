@@ -1,7 +1,10 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     post = Post.find(params[:post_id])
-    @reviews = post.reviews.includes(:user)
+    @reviews = post.get_reviews_for(current_user)
+
     respond_to do |format|
       format.js
     end
@@ -20,7 +23,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
 
     if @review.save
-      @reviews = @post.reviews.includes(:user)
+      @reviews = @post.get_reviews_for(current_user)
       flash[:success] = 'Your review was successfully saved!'
       respond_to do |format|
         format.js { render :file => 'reviews/index' }

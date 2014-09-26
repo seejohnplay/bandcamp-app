@@ -23,8 +23,8 @@ class Post < ActiveRecord::Base
 
   unless Rails.env.production?
     searchable do
-        text :artist
-        text :title
+      text :artist
+      text :title
     end
   end
 
@@ -54,6 +54,16 @@ class Post < ActiveRecord::Base
       %-<iframe width="400" height="110" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/#{self.link_type}s/#{self.embed_code}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=false"></iframe>-
     else
       %-<iframe width="400" height="100" style="position: relative; display: block; width: 400px; height: 100px;" src="http://bandcamp.com/EmbeddedPlayer/v=2/#{self.link_type}=#{self.embed_code}/size=venti/bgcol=FFFFFF/linkcol=4285BB/" allowtransparency="true" frameborder="0"></iframe>-
+    end
+  end
+
+  def get_reviews_for(user)
+    if user && user.admin?
+      self.reviews.includes(:user)
+    elsif user
+      self.reviews.where(user_id: user.id)
+    else
+      []
     end
   end
 

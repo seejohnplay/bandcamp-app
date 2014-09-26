@@ -1,11 +1,15 @@
 <%= render @reviews %>
 
 <div class="jumbotron">
-  <div class="container">
-    <h3>Review this release</h3>
-    <p>Click the button below to start a new review:</p>
-    <p>
-      <%= link_to 'Add new review', new_post_review_path(@post), :remote => true, class: 'btn btn-primary btn-lg' %>
-    </p>
-  </div>
+  <% if user_signed_in? %>
+    <div class="container">
+      <h3>Review this release</h3>
+      <p>Click the button below to start a new review:</p>
+      <p>
+        <%= link_to 'Add new review', new_post_review_path(@post), :remote => true, class: 'btn btn-primary btn-lg' %>
+      </p>
+    </div>
+  <% else %>
+    <%= link_to 'Sign in', new_user_session_path %> to review this release.
+  <% end %>
 </div>
