@@ -2,8 +2,13 @@ require 'rails_helper'
 
 describe ReviewsController do
   let(:blog_post) { FactoryGirl.create(:post_album) }
+  let(:user) { FactoryGirl.create(:user) }
 
   describe 'GET #index' do
+    before do
+      sign_in(user)
+    end
+
     context 'when a review exists'
     it 'assigns @reviews' do
       review = Review.create(post_id: blog_post.id, body: 'First review!')
@@ -18,6 +23,10 @@ describe ReviewsController do
   end
 
   describe 'GET #new' do
+    before do
+      sign_in(user)
+    end
+
     context 'when instantiating a new review for a post' do
       it 'instantiates a new review' do
         xhr :get, :new, post_id: blog_post.id, format: :js
@@ -31,6 +40,10 @@ describe ReviewsController do
   end
 
   describe 'POST #create' do
+    before do
+      sign_in(user)
+    end
+
     context 'when review is valid' do
       it 'renders the reviews index partial' do
 

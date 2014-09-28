@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
   resource :search, only: [:show]
   resources :ratings, only: [:update]
-  resources :posts, :except => [:update] do
+  resources :posts, except: [:update] do
     resources :votes, only: [:create]
-    resources :reviews, only: [:index, :new, :create]
+    resources :reviews, except: [:destroy]
   end
 end

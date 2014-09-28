@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001185758) do
+ActiveRecord::Schema.define(version: 20141001202245) do
 
   create_table "posts", force: true do |t|
     t.string   "url"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20141001185758) do
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "draft",      default: false
   end
 
   add_index "reviews", ["post_id"], name: "index_reviews_on_post_id"

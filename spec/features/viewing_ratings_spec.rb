@@ -13,14 +13,14 @@ feature 'Viewing ratings' do
     sign_in_user(user.email, user.password)
     visit post_path(post_album)
 
-    expect(page).to have_css('div#star')
-    expect(page).to have_css('div#user_star')
+    expect(page).to have_css('span#star')
+    expect(page).to have_css('span#user_star')
   end
 
   scenario 'on a post page when not logged in' do
     visit post_path(post_album)
 
-    expect(page).to have_css('div#star')
-    expect(page).to_not have_css('div#user_star')
+    expect(page).to have_css('span#star')
+    expect(page).to_not have_css('span#user_star')
   end
 end

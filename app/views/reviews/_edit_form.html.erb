@@ -11,11 +11,6 @@
     </div>
   <% end %>
 
-  <%= f.hidden_field :post_id, value: @post.id %>
-  <% if current_user %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-  <% end %>
-
   <div class="form-group">
     <%= f.label :body %>
     <%= f.text_area :body, class: 'form-control', required: true %>

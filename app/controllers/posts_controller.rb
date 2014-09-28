@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @reviews = @post.get_reviews_for(current_user)
+    @reviews = @post.reviews_for(current_user)
     if user_signed_in?
       @rating = Rating.where(post_id: @post.id, user_id: current_user.id).first ||
           Rating.create(post_id: @post.id, user_id: current_user.id, score: 0)

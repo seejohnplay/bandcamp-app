@@ -49,7 +49,7 @@ class Post < ActiveRecord::Base
     "#{id}-#{title.parameterize}-#{artist.parameterize}"
   end
 
-  def get_player_code
+  def player_code
     if self.soundcloud?
       %-<iframe width="400" height="110" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/#{self.link_type}s/#{self.embed_code}&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=false"></iframe>-
     else
@@ -57,7 +57,7 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def get_reviews_for(user)
+  def reviews_for(user)
     if user && user.admin?
       self.reviews.includes(:user)
     elsif user
