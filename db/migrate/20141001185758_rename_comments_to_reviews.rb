@@ -1,5 +1,5 @@
 class RenameCommentsToReviews < ActiveRecord::Migration
   def change
-    rename_table :reviews, :reviews
+    rename_table :comments, :reviews
   end
 end
