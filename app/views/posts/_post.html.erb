@@ -1,5 +1,10 @@
-<tr>
+<tr onclick="window.document.location='<%= post_path(post) %>';">
   <td>
+    <% if post.created_at < Date.today %>
+      <span class="post_date"><%= post.created_at.strftime('%b %d') %></span>
+    <% else %>
+      <span class="new_post">NEW</span>
+    <% end %>
     <%= link_to post.title.html_safe, post_path(post) %> by <%= post.artist.html_safe %>
     <% if user_signed_in? && current_user.admin? %>
       <%= link_to 'Destroy', post, data: {confirm: 'Are you sure?'}, :method => :delete, :class => 'btn-danger btn-xs', :style => 'border-radius: 5px; padding: 3px;' %>

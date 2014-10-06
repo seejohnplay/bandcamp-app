@@ -21,6 +21,20 @@
   src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../assets/glyphicons-halflings-regular.woff') format('woff'), url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
+body {
+  background:
+    //linear-gradient(
+    ////    rgba(255, 0, 0, 0.45),
+    ////    rgba(255, 0, 0, 0.45)
+    ////),
+    //url('../assets/record.png') 0px 500px,
+    url('../assets/background.png');
+  //background-size: 1800px;
+  //background-repeat: no-repeat;
+  //background-attachment: fixed;
+
+}
+
 td.column1, td.column2 {
   width: 3%;
   text-align: right;
