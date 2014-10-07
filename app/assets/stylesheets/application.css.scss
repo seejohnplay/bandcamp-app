@@ -23,16 +23,7 @@
 
 body {
   background:
-    //linear-gradient(
-    ////    rgba(255, 0, 0, 0.45),
-    ////    rgba(255, 0, 0, 0.45)
-    ////),
-    //url('../assets/record.png') 0px 500px,
-    url('../assets/background.png');
-  //background-size: 1800px;
-  //background-repeat: no-repeat;
-  //background-attachment: fixed;
-
+    url(asset-path('background.png'));
 }
 
 td.column1, td.column2 {
