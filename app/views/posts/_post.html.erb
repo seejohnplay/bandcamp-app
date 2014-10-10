@@ -1,9 +1,9 @@
 <tr onclick="window.document.location='<%= post_path(post) %>';">
-  <td>
+  <td class="vert-align">
     <% if post.created_at < Date.today %>
-      <span class="post_date"><%= post.created_at.strftime('%b %d') %></span>
+      <span class="post-date"><%= post.created_at.strftime('%b %d') %></span>
     <% else %>
-      <span class="new_post">NEW</span>
+      <span class="new-post">NEW</span>
     <% end %>
     <%= link_to post.title.html_safe, post_path(post) %> by <%= post.artist.html_safe %>
     <% if user_signed_in? && current_user.admin? %>

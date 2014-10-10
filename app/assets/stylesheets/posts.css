@@ -21,14 +21,31 @@
   }
 }
 
-.post_date, .new_post {
+.post-date, .new-post {
   padding: 2px 4px 0px 4px;
   background-color: #e31048;
   color: #FFFFFF;
   border-radius: 5px;
   font-size: 14px;
+  display: inline-block;
+  min-width: 55px;
+  text-align: center;
 }
 
-.new_post {
+.new-post {
   padding: 2px 10px 0px 10px
+}
+
+.embedded-music-player {
+  float:left;
+  margin-bottom: 15px;
+  border: solid 1px;
+  box-shadow: 6px 6px 5px #888888;
+  background-color: ghostwhite;
+}
+
+/* Bootstrap overrides */
+
+.table tbody>tr>td.vert-align {
+  vertical-align: middle;
 }
