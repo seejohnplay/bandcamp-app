@@ -15,6 +15,7 @@ class PostCreatorSoundcloud
       @post.title = @track.title
       @post.artist = @track.user.username
       @post.embed_code = @track.id
+      @post.artwork_url = @track.artwork_url
 
       set_tags
     end

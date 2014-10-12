@@ -17,6 +17,7 @@ describe PostCreator do
       expect(post_album.artist).to eql('Miss Walker')
       expect(post_album.description[0..11]).to eql('<br />He(a)d')
       expect(post_album.artist_url).to eql('')
+      expect(post_album.artwork_url).to eql('http://f1.bcbits.com/img/a0718472530_3.jpg')
       expect(post_album.popularity).to eql(0)
     end
 
@@ -38,6 +39,7 @@ describe PostCreator do
       expect(post_track.artist).to eql('Modern Baseball')
       expect(post_track.description[0..11]).to eql('<br />Re-do ')
       expect(post_track.artist_url).to eql('http://modernbaseball.limitedrun.com')
+      expect(post_track.artwork_url).to eql('http://f1.bcbits.com/img/a4256913136_3.jpg')
       expect(post_track.popularity).to eql(0)
     end
 

@@ -12,6 +12,7 @@ class PostCreatorBandcamp
       @post.embed_code = @doc.xpath('//comment()').last.to_s.match(/(\d+)/)[1].to_i
       @post.description = @doc.at_xpath("//meta[@name='Description']/@content").to_s.gsub("\n", '<br />')
       @post.artist_url = @doc.at_css("span[@itemprop='byArtist'] a @href").to_s
+      @post.artwork_url = @doc.at_xpath("//link[@rel='shortcut icon']/@href").to_s
       @post.title = title_tag[title_tag.index('<title>')+7..title_tag.index('|')-2]
       @post.artist = title_tag[title_tag.index('|')+2..title_tag.index('</title>')-1]
       set_tags

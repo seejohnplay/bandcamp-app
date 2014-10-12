@@ -1,16 +1,23 @@
 <tr onclick="window.document.location='<%= post_path(post) %>';">
-  <td class="vert-align">
+  <td class="column2 vert-align">
     <% if post.created_at < Date.today %>
       <span class="post-date"><%= post.created_at.strftime('%b %d') %></span>
     <% else %>
       <span class="new-post">NEW</span>
     <% end %>
+    <span style="margin-right:4px;"><%= image_tag(post.artwork_url ? post.artwork_url : image_path('no_artwork.png'), size: '47') %></span>
+  </td>
+  <td class="vert-align">
     <%= link_to post.title.html_safe, post_path(post) %> by <%= post.artist.html_safe %>
     <% if user_signed_in? && current_user.admin? %>
       <%= link_to 'Destroy', post, data: {confirm: 'Are you sure?'}, :method => :delete, :class => 'btn-danger btn-xs', :style => 'border-radius: 5px; padding: 3px;' %>
     <% end %>
+    <% if post.tag_list.size > 0 %>
+      <br/>
+      <small><%= raw post.tag_list[0...-1].map { |t| t }.join(', ') %></small>
+    <% end %>
   </td>
-  <td class="column2">
+  <td class="column2 vert-align">
     <div id="star_<%= post.id %>"></div>
   </td>
 </tr>
