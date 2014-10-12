@@ -42,7 +42,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.required(:post).permit(:embed_code, :url, :link_type, :title, :artist, :description, :artist_url)
+    params.required(:post).permit(:embed_code, :url, :link_type, :title, :artist, :description, :artist_url, :artwork_url)
   end
 
   def require_admin
