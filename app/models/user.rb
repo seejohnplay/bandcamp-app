@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
 
   before_save :set_role, :if => :new_record?
 
-  validates :name, presence: true, uniqueness: true
+
+  validates :username, presence: true, uniqueness: true, length: { minimum: 2 }
+  validates :username, format: { with: /\A[a-zA-Z0-9_]+\Z/, message: "only allows numbers, letters and underscores" }
 
   has_many :ratings
 

@@ -9,7 +9,7 @@ feature 'signing up' do
 
   scenario 'with valid information' do
     fill_in 'Email', with: 'john@test.com'
-    fill_in 'Name', with: 'john'
+    fill_in 'Username', with: 'john'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
     click_button 'Sign up'
@@ -21,7 +21,7 @@ feature 'signing up' do
   end
 
   scenario 'without an email' do
-    fill_in 'Name', with: 'john'
+    fill_in 'Username', with: 'john'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
     click_button 'Sign up'
@@ -35,12 +35,12 @@ feature 'signing up' do
     fill_in 'Password confirmation', with: 'password'
     click_button 'Sign up'
 
-    expect(page).to have_content('Name can\'t be blank')
+    expect(page).to have_content('Username can\'t be blank')
   end
 
   scenario 'without a password' do
     fill_in 'Email', with: 'john@test.com'
-    fill_in 'Name', with: 'john'
+    fill_in 'Username', with: 'john'
     fill_in 'Password confirmation', with: 'password'
     click_button 'Sign up'
 
@@ -50,7 +50,7 @@ feature 'signing up' do
 
   scenario 'without a matching confirmation password' do
     fill_in 'Email', with: 'john@test.com'
-    fill_in 'Name', with: 'john'
+    fill_in 'Username', with: 'john'
     fill_in 'Password', with: 'password'
     click_button 'Sign up'
 
@@ -59,7 +59,7 @@ feature 'signing up' do
 
   scenario 'without a password at least 8 characters in length' do
     fill_in 'Email', with: 'john@test.com'
-    fill_in 'Name', with: 'john'
+    fill_in 'Username', with: 'john'
     fill_in 'Password', with: 'passwrd'
     fill_in 'Password confirmation', with: 'passwrd'
     click_button 'Sign up'
