@@ -5,9 +5,6 @@ gem 'acts-as-taggable-on' # for post tags
 gem 'nokogiri' # for HTML parsing and scraping
 gem 'kaminari' # for pagination
 gem 'closure_tree' # for nested comments
-gem 'sunspot_rails'  # for solr search
-gem 'sunspot_solr'   # for solr
-gem 'progress_bar' # for solr reindex progress bar
 gem 'soundcloud' # for soundcloud api
 gem 'rails_12factor', group: :production # for heroku
 gem 'elasticsearch-model' # for elasticsearch

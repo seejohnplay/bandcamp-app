@@ -1,6 +1,6 @@
 <div class="well">
   <p class="text-muted">
-    Added by <strong><%= review.user_id ? review.user.name : 'anonymous' %></strong> on
+    Added by <strong><%= review.user_id ? review.user.username : 'anonymous' %></strong> on
     <%= l(review.created_at, format: '%B, %d %Y %H:%M:%S') %>
     <% if review.draft %>
       <%= link_to 'Edit Draft', edit_post_review_path(post_id: review.post.id, id: review.id), remote: true, class: 'btn btn-xs btn-info' %>
