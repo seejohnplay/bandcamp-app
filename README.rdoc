@@ -17,7 +17,7 @@ To install:
 2. cd bandcamp-app
 3. bundle install
 4. rake db:migrate
-5. mv .env-example .env (this .env will make tests pass, but you will need valid values for the app)
+5. cp .env-example .env (this .env will make tests pass, but you will need valid values for the app)
 6. elasticsearch
 7. rspec
 8. rails s
